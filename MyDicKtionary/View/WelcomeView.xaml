@@ -12,5 +12,16 @@
                 Text="Start Quiz"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+        <CollectionView ItemsSource="{Binding }">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" Margin="5" BackgroundColor="LightGray">
+                        <Label Text="{Binding English}" FontSize="18" />
+                        <Label Text="{Binding Slovak}" FontSize="16" />
+                        <Label Text="{Binding Hungarian}" FontSize="16" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>

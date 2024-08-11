@@ -41,5 +41,10 @@ namespace MyDicKtionary.Models
         {
             return _database.Table<Word>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
+
+        public Task<int> DeleteAllWordsAsync()
+        {
+            return _database.DeleteAllAsync<Word>();
+        }
     }
 }

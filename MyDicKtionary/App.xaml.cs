@@ -13,7 +13,7 @@ namespace MyDicKtionary
             {
                 if (_database == null)
                 {
-                    string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Words.db3");
+                    string dbPath = Path.Combine(Microsoft.Maui.Storage.FileSystem.AppDataDirectory, "Words.db3");
                     _database = new WordDatabase(dbPath);
                 }
                 return _database;
