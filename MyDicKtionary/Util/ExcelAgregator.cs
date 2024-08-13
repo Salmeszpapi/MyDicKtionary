@@ -15,19 +15,10 @@ namespace MyDicKtionary.Util
             await App.Database.DeleteAllWordsAsync();
 
             WorkBook workBook = WorkBook.Load("C:\\Users\\kik\\source\\repos\\MyDicKtionary\\MyDicKtionary\\Util\\EngishWords.xlsx");
-            //xlsWorkbook.Metadata.Author = "IronXL";
-            //WorkSheet xlsSheet = xlsWorkbook.CreateWorkSheet("new_sheet");
-            //xlsSheet["A1"].Value = "Hello World";
-            //xlsSheet["A2"].Style.BottomBorder.SetColor("#ff6600");
-            //xlsSheet["A2"].Style.BottomBorder.Type = IronXL.Styles.BorderType.Double;
-            //xlsWorkbook.SaveAs("NewExcelFile.xls"); //Save the excel file
             WorkSheet workSheet = workBook.WorkSheets[0];
-
-            WorkSheet firstSheet = workBook.DefaultWorkSheet;
 
             var englishWords = workSheet.GetColumn(0);
             var hungaryanWords = workSheet.GetColumn(1);
-            var words = await App.Database.GetWordsAsync();
 
             for (int i = 0; i < englishWords.RowCount; i++)
             {

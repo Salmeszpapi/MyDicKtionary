@@ -13,13 +13,21 @@ namespace MyDicKtionary.Models
 
         public WordDatabase(string dbPath)
         {
-            _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<Word>().Wait();
+            try
+            {
+                _database = new SQLiteAsyncConnection(dbPath);
+                _database.CreateTableAsync<Word>().Wait(); // Synchronous wait can block the thread, but it's necessary here
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed to initialize database: {ex.Message}");
+                throw; // Re-throwing to let the exception bubble up
+            }
         }
 
-        public Task<List<Word>> GetWordsAsync()
+        public async Task<List<Word>> GetWordsAsync()
         {
-            return _database.Table<Word>().ToListAsync();
+            return await _database.Table<Word>().ToListAsync();
         }
 
         public Task<int> SaveWordAsync(Word word)

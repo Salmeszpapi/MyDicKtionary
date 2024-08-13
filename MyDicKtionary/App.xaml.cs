@@ -1,7 +1,10 @@
-﻿using MyDicKtionary.ViewModel;
+﻿using Microsoft.Maui.Storage; // Ensure this is included
+using MyDicKtionary.ViewModel;
 using MyDicKtionary.View;
 using MyDicKtionary.Steps;
 using MyDicKtionary.Models;
+using System.IO; // Ensure this is included for Path and Directory
+
 namespace MyDicKtionary
 {
     public partial class App : Application
@@ -13,16 +16,24 @@ namespace MyDicKtionary
             {
                 if (_database == null)
                 {
-                    string dbPath = Path.Combine(Microsoft.Maui.Storage.FileSystem.AppDataDirectory, "Words.db3");
+                    string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Words.db3"); // Fixed usage here
                     _database = new WordDatabase(dbPath);
                 }
                 return _database;
             }
         }
+
         public App(WelcomeStep welcomeStep)
         {
             InitializeComponent();
+            InitializeDatabase(); // No need to do this here if already done in Database property
             MainPage = welcomeStep.GetView();
+        }
+
+        private void InitializeDatabase()
+        {
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Words.db3"); // Fixed usage here
+            _database = new WordDatabase(dbPath);
         }
     }
 }
