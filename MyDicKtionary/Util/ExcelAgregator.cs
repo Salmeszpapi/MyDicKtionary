@@ -3,6 +3,7 @@ using MyDicKtionary.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,8 +14,19 @@ namespace MyDicKtionary.Util
         public async Task ProcessExcel()
         {
             await App.Database.DeleteAllWordsAsync();
+            WorkBook workBook = null;
+            //WorkBook workBook = WorkBook.Load("C:\\Users\\kik\\source\\repos\\MyDicKtionary\\MyDicKtionary\\Util\\EngishWords.xlsx");
+            try
+            {
+                string assemblyDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            WorkBook workBook = WorkBook.Load("C:\\Users\\kik\\source\\repos\\MyDicKtionary\\MyDicKtionary\\Util\\EngishWords.xlsx");
+                // Combine the directory with the relative path to the Excel file
+                string excelPath = Path.Combine(assemblyDirectory, "Util", "EngishWords.xlsx");
+                workBook =  WorkBook.Load(excelPath);
+            }
+            catch (Exception ex)
+            {
+            }
             WorkSheet workSheet = workBook.WorkSheets[0];
 
             var englishWords = workSheet.GetColumn(0);
