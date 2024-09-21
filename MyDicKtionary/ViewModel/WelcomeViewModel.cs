@@ -26,10 +26,9 @@ namespace MyDicKtionary.ViewModel
         private async Task StartQuizAsync()
         {
             ExcelDataService excelDataService = new ExcelDataService();
-            await excelDataService.ReadExcel();
-            await _excelAgregator.ProcessExcel(); // If this method is async, you should await it too
-            DictionaryWords = await App.Database.GetWordsAsync(); // Await the async database operation
-            OnPropertyChange(nameof(DictionaryWords)); // Notify UI about the change
+            await _excelAgregator.ReadExcel();
+            DictionaryWords = await App.Database.GetWordsAsync(); 
+            OnPropertyChange(nameof(DictionaryWords));
         }
 
         private void OnPropertyChange(string propertyName)
