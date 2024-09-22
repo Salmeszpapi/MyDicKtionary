@@ -3,18 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyDicKtionary.View.WelcomeView"
              Title="WelcomeView">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <Button Command="{Binding StartQuizCommand}" 
-                Text="Start Quiz"
+    <Border BackgroundColor="Orange">
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+        <StackLayout Orientation="Horizontal">
+            <ImageButton Command="{Binding StartQuizCommand}" Margin="5" 
+                Source="quiz.png"
+                HeightRequest="50"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
+            <ImageButton Command="{Binding StartQuizCommand}" Margin="5" 
+                Source="draw.png"
+                HeightRequest="50"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <ImageButton Command="{Binding StartQuizCommand}" Margin="5" 
+                Source="history.png"
+                HeightRequest="50"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+            <ImageButton Command="{Binding StartQuizCommand}" Margin="5" 
+                Source="settings.png"
+                HeightRequest="50"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+        </StackLayout>
 
-        <ScrollView Grid.Row="1">
+    </StackLayout>
+    </Border>
+    <!--<ScrollView Grid.Row="1">
             <CollectionView ItemsSource="{Binding DictionaryWords}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -25,6 +44,5 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </ScrollView>
-    </Grid>
+        </ScrollView>-->
 </ContentPage>

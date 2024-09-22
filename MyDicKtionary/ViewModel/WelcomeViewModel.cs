@@ -15,9 +15,32 @@ namespace MyDicKtionary.ViewModel
         public WelcomeViewModel(ExcelAgregator excelAgregator)
         {
             StartQuizCommand = new Command(async () => await StartQuizAsync());
+            StartQuizCommand = new Command(async () => await StartEditAsync());
+            StartQuizCommand = new Command(async () => await StartHistoryAsync());
+            StartQuizCommand = new Command(async () => await StartSettingsAsync());
             _excelAgregator = excelAgregator;
         }
+
+        private async Task StartEditAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        private async Task StartHistoryAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        private async Task StartSettingsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Command StartQuizCommand { get; set; }
+        public Command StartEdit { get; set; }
+        public Command StartHistory { get; set; }
+        public Command StartQuize { get; set; }
+
         public List<Word> DictionaryWords { get; set; }
         private ExcelAgregator _excelAgregator;
 
