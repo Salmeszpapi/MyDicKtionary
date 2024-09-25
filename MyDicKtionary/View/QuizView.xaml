@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Datatype="clr-namespace:MyDicKtionary.ViewModel"
+             x:DataType="Datatype:QuizViewModel"
+             xmlns:Word="clr-namespace:MyDicKtionary.Models"
+             x:Class="MyDicKtionary.View.QuizView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollView Grid.Column="0" Grid.Row="1">
+            <CollectionView ItemsSource="{Binding DictionaryWords}">
+                <CollectionView.ItemTemplate>
+                    <!-- Specify the type for items in the collection -->
+                    <DataTemplate x:DataType="Word:Word">
+                        <StackLayout Padding="10" Margin="5" BackgroundColor="LightGray">
+                            <Label Text="{Binding English}" FontSize="18" />
+                            <Label Text="{Binding Hungarian}" FontSize="16" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
+</ContentView>

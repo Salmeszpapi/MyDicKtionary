@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace MyDicKtionary.Util
 {
-    public class ExcelAgregator
+    public static class ExcelAgregator
     {
-        public async Task ProcessExcel()
+        public static async Task ProcessExcel()
         {
             await App.Database.DeleteAllWordsAsync();
             WorkBook workBook = null;
@@ -49,7 +49,7 @@ namespace MyDicKtionary.Util
             }
         }
 
-        public async Task ReadExcel()
+        public static async Task ReadExcel()
         {
             var fileUrl = "https://drive.usercontent.google.com/download?id=1BCOY3pZR-bQVduWXDwKvyGk7kQQUXQSz&export=download&authuser=0&confirm=t&uuid=5403b9a9-d52d-4c62-a6c3-dca271c93a34/export?format=xlsx";
 
@@ -98,7 +98,7 @@ namespace MyDicKtionary.Util
             }
         }
 
-        public async Task ReadAndConvertExcelToCSV()
+        public static async Task ReadAndConvertExcelToCSV()
         {
             var fileUrl = "https://drive.usercontent.google.com/download?id=1HH3S4YWUVpFvV2IuQDqKaAGgmnstQfoE&export=download&authuser=0&confirm=t&uuid=8f291b17-ebe7-4725-94f8-633fedb4de41&at=AO7h07dZVweRMQkBrMJM3oJx6zqO:1726904312959";
 
@@ -127,7 +127,7 @@ namespace MyDicKtionary.Util
             }
         }
 
-        private async Task ProcessCSVData(string csvData)
+        private static async Task ProcessCSVData(string csvData)
         {
             // Here, you can split the CSV content and process each row as needed
             using (var reader = new StringReader(csvData))

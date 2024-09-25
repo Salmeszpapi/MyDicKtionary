@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using MyDicKtionary.Models;
 using MyDicKtionary.Steps;
@@ -14,6 +15,7 @@ namespace MyDicKtionary
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -24,9 +26,7 @@ namespace MyDicKtionary
     		builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton<IViewModelFactory, ViewModelFactory>();
-            builder.Services.AddSingleton<ExcelAgregator>();
-            builder.Services.AddSingleton<WelcomeStep>();
-            builder.Services.AddSingleton<WelcomeViewModel>();
+            builder.Services.AddSingleton<MainStep>();
             return builder.Build();
         }
     }

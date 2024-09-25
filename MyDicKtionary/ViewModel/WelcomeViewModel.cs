@@ -1,24 +1,28 @@
 ﻿using MyDicKtionary.Models;
 using MyDicKtionary.Services;
 using MyDicKtionary.Util;
+using MyDicKtionary.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommunityToolkit.Maui.Views;
+using MyDicKtionary.Steps;
 
 namespace MyDicKtionary.ViewModel
 {
     public class WelcomeViewModel : INotifyPropertyChanged
     {
-        public WelcomeViewModel(ExcelAgregator excelAgregator)
+        private MainStep _mainStep;
+        public WelcomeViewModel(MainStep mainStep)
         {
             StartQuizCommand = new Command(async () => await StartQuizAsync());
             StartQuizCommand = new Command(async () => await StartEditAsync());
             StartQuizCommand = new Command(async () => await StartHistoryAsync());
             StartQuizCommand = new Command(async () => await StartSettingsAsync());
-            _excelAgregator = excelAgregator;
+            _mainStep = mainStep;
         }
 
         private async Task StartEditAsync()
@@ -33,7 +37,35 @@ namespace MyDicKtionary.ViewModel
 
         private async Task StartSettingsAsync()
         {
-            throw new NotImplementedException();
+            QuizSubStateStep quizSubStateStep = new QuizSubStateStep();
+            var result = await _mainStep.GetView().ShowPopupAsync(quizSubStateStep.GetPopup());
+
+            if (result is null)
+            {
+                return;
+            }
+            switch (result)
+            {
+                case QuizResultEnum.Start:
+                    _dictionaryWords =  await ReadExcelWordsToDatabase();
+                    QuizStep quizStep = new QuizStep(_dictionaryWords);
+                    WorkFlowManager.SetCurrentPage(quizStep.GetView());
+                    _mainStep.GetViewModel().CurrentView = quizStep.GetView();
+
+                    break;
+                case QuizResultEnum.Closed:
+                    return;
+            }
+
+        }
+
+        public async Task<List<Word>> ReadExcelWordsToDatabase()
+        {
+            ExcelDataService excelDataService = new ExcelDataService();
+            await ExcelAgregator.ReadExcel();
+            _dictionaryWords = await App.Database.GetWordsAsync();
+            
+            return _dictionaryWords;
         }
 
         public Command StartQuizCommand { get; set; }
@@ -41,17 +73,16 @@ namespace MyDicKtionary.ViewModel
         public Command StartHistory { get; set; }
         public Command StartQuize { get; set; }
 
-        public List<Word> DictionaryWords { get; set; }
-        private ExcelAgregator _excelAgregator;
+        private List<Word> _dictionaryWords { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        private async Task StartQuizAsync()
+        private async Task<List<Word>> StartQuizAsync()
         {
             ExcelDataService excelDataService = new ExcelDataService();
-            await _excelAgregator.ReadExcel();
-            DictionaryWords = await App.Database.GetWordsAsync(); 
-            OnPropertyChange(nameof(DictionaryWords));
+            _dictionaryWords = await App.Database.GetWordsAsync();
+            OnPropertyChange(nameof(_dictionaryWords));
+            return _dictionaryWords;
         }
 
         private void OnPropertyChange(string propertyName)

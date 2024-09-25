@@ -23,11 +23,11 @@ namespace MyDicKtionary
             }
         }
 
-        public App(WelcomeStep welcomeStep)
+        public App(MainStep mainStep)
         {
             InitializeComponent();
             InitializeDatabase(); // No need to do this here if already done in Database property
-            MainPage = welcomeStep.GetView();
+            MainPage = mainStep.GetView();
         }
 
         private void InitializeDatabase()

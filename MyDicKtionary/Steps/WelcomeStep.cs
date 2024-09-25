@@ -14,12 +14,13 @@ namespace MyDicKtionary.Steps
         private WelcomeView view;
         private WelcomeViewModel viewModel;
 
-        public WelcomeStep(IViewModelFactory viewModelFactory)
+        public WelcomeStep(MainStep mainStep)
         {
-            viewModel = viewModelFactory.Create<WelcomeViewModel>();
+            viewModel = new WelcomeViewModel(mainStep);
             view = new WelcomeView() { BindingContext = viewModel};
+            WorkFlowManager.SetCurrentPage(view);
         }
-        public ContentPage GetView()
+        public ContentView GetView()
         {   
             return view;
         }
