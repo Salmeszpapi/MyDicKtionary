@@ -6,4 +6,9 @@ public partial class QuizView : ContentView
 	{
         InitializeComponent();
 	}
+
+    private void Entry_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+
+    }
 }

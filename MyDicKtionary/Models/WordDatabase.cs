@@ -45,6 +45,11 @@ namespace MyDicKtionary.Models
             return _database.UpdateAsync(word);
         }
 
+        public Task<int> UpdateDictionary(List<Word> words)
+        {
+            return _database.DeleteAllAsync<Word>();
+        }
+
         public Task<Word> GetWordAsync(int id)
         {
             return _database.Table<Word>().Where(i => i.Id == id).FirstOrDefaultAsync();

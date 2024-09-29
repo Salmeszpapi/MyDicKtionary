@@ -5,22 +5,26 @@
              x:DataType="Datatype:QuizViewModel"
              xmlns:Word="clr-namespace:MyDicKtionary.Models"
              x:Class="MyDicKtionary.View.QuizView">
-    <Grid>
+    <Grid BackgroundColor="AliceBlue" Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Text="Save changes" Command="{Binding UpdateWords}"/> 
         <ScrollView Grid.Column="0" Grid.Row="1">
             <CollectionView ItemsSource="{Binding DictionaryWords}">
                 <CollectionView.ItemTemplate>
-                    <!-- Specify the type for items in the collection -->
                     <DataTemplate x:DataType="Word:Word">
-                        <StackLayout Padding="10" Margin="5" BackgroundColor="LightGray">
-                            <Label Text="{Binding English}" FontSize="18" />
-                            <Label Text="{Binding Hungarian}" FontSize="16" />
-                        </StackLayout>
+                        <HorizontalStackLayout>
+                            <VerticalStackLayout>
+                                <Entry Text="{Binding English}" />
+                                <Entry Text="{Binding Hungarian}" TextChanged="{Binding Source={RelativeSource AncestorType={x:Type Datatype:QuizViewModel}}, Path=HandleTextChangedCommand}"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

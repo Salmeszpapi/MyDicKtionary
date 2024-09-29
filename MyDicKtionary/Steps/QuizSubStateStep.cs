@@ -18,6 +18,7 @@ namespace MyDicKtionary.Steps
         {
             quizSubStateViewModel = new QuizSubStateViewModel();
             quizSubstateView = new QuizSubstate() { BindingContext = quizSubStateViewModel };
+            quizSubStateViewModel.QuizSubstateView = quizSubstateView;
         }
 
         public Popup GetPopup()

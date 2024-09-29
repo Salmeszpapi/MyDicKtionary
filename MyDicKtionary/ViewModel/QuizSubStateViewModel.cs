@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyDicKtionary.Models;
+using MyDicKtionary.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,13 +13,13 @@ namespace MyDicKtionary.ViewModel
     public class QuizSubStateViewModel : INotifyPropertyChanged
     {
         private int _quizQuestions;
-
+        public Command StartQuiz { get; set; }
+        public QuizSubstate QuizSubstateView;
         public QuizSubStateViewModel()
         {
             StartQuiz = new Command(StartQuizButton);
         }
 
-        public Command StartQuiz { get; set; }
         public int QuizQuestions
         {
             get { return _quizQuestions; }
@@ -32,7 +34,7 @@ namespace MyDicKtionary.ViewModel
 
         private void StartQuizButton()
         {
-
+            QuizSubstateView.CloseAsync(QuizResultEnum.Start);
         }
 
         public void OnPropertyChanegd(string propertyName)

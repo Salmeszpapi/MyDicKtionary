@@ -47,7 +47,12 @@ namespace MyDicKtionary.ViewModel
             switch (result)
             {
                 case QuizResultEnum.Start:
-                    _dictionaryWords =  await ReadExcelWordsToDatabase();
+                   _dictionaryWords = await App.Database.GetWordsAsync();
+                    if (!_dictionaryWords.Any())
+                    {
+                        _dictionaryWords =  await ReadExcelWordsToDatabase();
+                    }
+
                     QuizStep quizStep = new QuizStep(_dictionaryWords);
                     WorkFlowManager.SetCurrentPage(quizStep.GetView());
                     _mainStep.GetViewModel().CurrentView = quizStep.GetView();
