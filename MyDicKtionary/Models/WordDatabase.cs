@@ -40,14 +40,12 @@ namespace MyDicKtionary.Models
             return _database.DeleteAsync(word);
         }
 
-        public Task<int> UpdateWordAsync(Word word)
+        public void UpdateDictionary(List<Word> words)
         {
-            return _database.UpdateAsync(word);
-        }
-
-        public Task<int> UpdateDictionary(List<Word> words)
-        {
-            return _database.DeleteAllAsync<Word>();
+            foreach (var item in words)
+            {
+                _database.UpdateAsync(item);
+            }
         }
 
         public Task<Word> GetWordAsync(int id)

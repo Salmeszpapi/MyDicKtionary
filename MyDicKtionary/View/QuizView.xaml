@@ -21,7 +21,7 @@
                         <HorizontalStackLayout>
                             <VerticalStackLayout>
                                 <Entry Text="{Binding English}" />
-                                <Entry Text="{Binding Hungarian}" TextChanged="{Binding Source={RelativeSource AncestorType={x:Type Datatype:QuizViewModel}}, Path=HandleTextChangedCommand}"/>
+                                <Entry Text="{Binding Hungarian}" />
                             </VerticalStackLayout>
                         </HorizontalStackLayout>
 
