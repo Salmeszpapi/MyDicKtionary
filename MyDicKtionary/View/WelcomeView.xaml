@@ -13,7 +13,7 @@
                 HeightRequest="50"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />
-                <ImageButton Command="{Binding StartQuizCommand}" Margin="5" 
+                <ImageButton Command="{Binding StartEdit}" Margin="5" 
                 Source="draw.png"
                 HeightRequest="50"
                 VerticalOptions="Center" 

@@ -19,7 +19,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Word:Word">
                         <HorizontalStackLayout>
-                            <VerticalStackLayout>
+                            <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300">
                                 <Entry Text="{Binding English}" />
                                 <Entry Text="{Binding Hungarian}" />
                             </VerticalStackLayout>

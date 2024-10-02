@@ -16,10 +16,14 @@ namespace MyDicKtionary.ViewModel
     public class WelcomeViewModel : INotifyPropertyChanged
     {
         private MainStep _mainStep;
+        public Command StartQuizCommand { get; set; }
+        public Command StartEdit { get; set; }
+        public Command StartHistory { get; set; }
+        public Command StartQuize { get; set; }
         public WelcomeViewModel(MainStep mainStep)
         {
             StartQuizCommand = new Command(async () => await StartQuizAsync());
-            StartQuizCommand = new Command(async () => await StartEditAsync());
+            StartEdit = new Command(async () => await StartEditAsync());
             StartQuizCommand = new Command(async () => await StartHistoryAsync());
             StartQuizCommand = new Command(async () => await StartSettingsAsync());
             _mainStep = mainStep;
@@ -27,7 +31,10 @@ namespace MyDicKtionary.ViewModel
 
         private async Task StartEditAsync()
         {
-            throw new NotImplementedException();
+            _dictionaryWords = await App.Database.GetWordsAsync();
+            QuizStep quizStep = new QuizStep(_dictionaryWords);
+            WorkFlowManager.SetCurrentPage(quizStep.GetView());
+            _mainStep.GetViewModel().CurrentView = quizStep.GetView();
         }
 
         private async Task StartHistoryAsync()
@@ -72,11 +79,6 @@ namespace MyDicKtionary.ViewModel
             
             return _dictionaryWords;
         }
-
-        public Command StartQuizCommand { get; set; }
-        public Command StartEdit { get; set; }
-        public Command StartHistory { get; set; }
-        public Command StartQuize { get; set; }
 
         private List<Word> _dictionaryWords { get; set; }
 
