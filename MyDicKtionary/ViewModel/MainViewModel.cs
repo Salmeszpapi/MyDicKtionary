@@ -1,4 +1,5 @@
-﻿using MyDicKtionary.Steps;
+﻿using MyDicKtionary.Models;
+using MyDicKtionary.Steps;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,8 +27,16 @@ namespace MyDicKtionary.ViewModel
             WelcomeStep welcomeStep = new WelcomeStep(mainStep);
             CurrentView = welcomeStep.GetView();
             OnPropertyChange(nameof(CurrentView));
+            BackViewCommand = new Command(BackButtonPressed);
+
+            WorkFlowManager.ContentViewChanged += WorkFlowManager_ContentViewChanged;
         }
 
+        private void WorkFlowManager_ContentViewChanged(object? sender, EventArgs e)
+        {
+            
+        }
+        public Command BackViewCommand;
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private void OnPropertyChange(string propertyName)
@@ -37,6 +46,10 @@ namespace MyDicKtionary.ViewModel
         public void SetView(ContentView view)
         {
             CurrentView = view;
+        }
+        private void BackButtonPressed()
+        {
+            WorkFlowManager.SetCurrentPage
         }
     }
 }

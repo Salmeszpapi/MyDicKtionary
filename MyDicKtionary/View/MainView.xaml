@@ -5,9 +5,16 @@
              Title="MainView">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <ContentView Grid.Row="0" Content="{Binding CurrentView}" />
+        <HorizontalStackLayout Grid.Row="0">
+            <ImageButton Command="{Binding BackViewCommand}" Margin="5" 
+Source="quiz.png"
+HeightRequest="50"
+VerticalOptions="Center" 
+HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+        <ContentView Grid.Row="1" Content="{Binding CurrentView}" />
     </Grid>
 </ContentPage>
