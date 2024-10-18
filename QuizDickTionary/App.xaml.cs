@@ -1,12 +1,14 @@
-﻿namespace QuizDickTionary
+﻿using QuizDickTionary.Application.ViewModels;
+
+namespace QuizDickTionary
 {
-    public partial class App : Application
+    public partial class App 
     {
         public App()
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new MainWindowViewModel().GetPage();
         }
     }
 }

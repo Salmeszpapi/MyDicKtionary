@@ -49,7 +49,7 @@ namespace MyDicKtionary.ViewModel
         }
         private void BackButtonPressed()
         {
-            WorkFlowManager.SetCurrentPage
+
         }
     }
 }
