@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QuizDickTionary.Application.Views.EditWordsView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:Class="QuizDickTionary.Application.Views.EditWordsView"
+             xmlns:binding="clr-namespace:QuizDickTionary.Application.ViewModels"
+             xmlns:Word="clr-namespace:QuizDickTionary.Domain.Dtos"
+             x:DataType="binding:EditWordsViewModel">
+    <Grid BackgroundColor="AliceBlue" Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Text="Save changes"/> <!--Command="{Binding UpdateWords}-->
+        <ScrollView Grid.Column="0" Grid.Row="1">
+            <CollectionView ItemsSource="{Binding DictionaryWords}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="Word:WordDto">
+                        <HorizontalStackLayout>
+                            <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300">
+                                <Entry Text="{Binding English}" />
+                                <Entry Text="{Binding Hungarian}" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </Grid>
 </ContentView>

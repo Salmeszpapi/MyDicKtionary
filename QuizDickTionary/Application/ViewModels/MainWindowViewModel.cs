@@ -24,18 +24,13 @@ namespace QuizDickTionary.Application.ViewModels
 
         public MainWindowViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory) 
         {
-            WelcomeViewModel welcomeViewModel= viewModelFactory.CreateViewModel<WelcomeViewModel>();
-            ContentView = welcomeViewModel.GetView();
             _mainWindowLayout = new MainWindowLayout() { BindingContext = this };
+            
+            ContentView = viewModelFactory.CreateViewModel<WelcomeViewModel>().GetView();
         }
         public ContentPage GetPage()
         {
             return _mainWindowLayout;
-        }
-
-        public void SetContentView(ContentView contentView)
-        {
-            ContentView = contentView;
         }
     }
 }

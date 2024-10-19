@@ -26,8 +26,16 @@ namespace QuizDickTionary.Application.ViewModels
             StartQuizCommand = new Command(StartQuiz);
             HystoryCommand = new Command(OpenHystory);
 
-            databaseFetchTask = ApiDataProvider.ReadExcel();
+            inicializeDatabase();
             _contentView = new WelcomeView() {  BindingContext = this};
+        }
+
+        private async void inicializeDatabase()
+        {
+            if (!await App.Database.IsEmptyTable())
+            {
+                databaseFetchTask = ApiDataProvider.ReadExcel();
+            }
         }
 
         public async Task ReadExcel()
@@ -56,12 +64,15 @@ namespace QuizDickTionary.Application.ViewModels
 
         private async void EditWords()
         {
+            OnModelLoaded();
             var mainWidnow =  _viewModelFactory.CreateViewModel<MainWindowViewModel>();
             await databaseFetchTask;
             var _dictionaryWords = await App.Database.GetWordsAsync();
             if (!_dictionaryWords.Any())
             {
             }
+            EditWordsViewModel editWordsViewModel = _viewModelFactory.CreateViewModel<EditWordsViewModel>();
+            MainWindowViewModel.ContentView = editWordsViewModel.GetView();
         }
     }
 }

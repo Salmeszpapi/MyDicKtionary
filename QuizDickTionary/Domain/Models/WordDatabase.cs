@@ -42,6 +42,11 @@ namespace QuizDickTionary.Domain.Models
             }
         }
 
+        public async Task<bool> IsEmptyTable()
+        {
+            return await _database.Table<WordDto>().CountAsync() > 0;
+        }
+
         public async Task<List<WordDto>> GetWordsAsync()
         {
             return await _database.Table<WordDto>().ToListAsync();
