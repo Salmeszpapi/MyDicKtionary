@@ -5,13 +5,12 @@ namespace MyDicKtionary.Services
 {
     public class ExcelDataService
     {
-        private static string ImageBasePath = "https://servmidman.gugar.sk/";
-        private static string ftpServerUrl = "ftp://gugar.sk/gugar.sk/sub/servmidman";
-        private static string userName = "hojszi.gugar.sk";
-        private static string password = "myNewDatabasePassword1";
+        //private static string ImageBasePath = "https://servmidman.gugar.sk/";
+        //private static string ftpServerUrl = "ftp://gugar.sk/gugar.sk/sub/servmidman";
+        //private static string userName = "hojszi.gugar.sk";
+        //private static string password = "myNewDatabasePassword1";
         public ExcelDataService()
         {
-            string a = "asd";
         }
         public async Task ReadExcel()
         {

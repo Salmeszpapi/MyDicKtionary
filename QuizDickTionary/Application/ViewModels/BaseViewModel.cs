@@ -1,11 +1,18 @@
-﻿using System.ComponentModel;
+﻿using QuizDickTionary.Application.Models;
+using System.ComponentModel;
 
 namespace QuizDickTionary.Application.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
+        private readonly IViewModelFactory viewModelFactory;
 
+        public BaseViewModel(IViewModelFactory viewModelFactory)
+        {
+            //MainWindowViewModel = viewModelFactory.CreateViewModel<MainWindowViewModel>();
+        }
+        public event PropertyChangedEventHandler? PropertyChanged;
+        public MainWindowViewModel MainWindowViewModel { get; set; }
         public void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

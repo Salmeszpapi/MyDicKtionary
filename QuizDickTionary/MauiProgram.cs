@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using QuizDickTionary.Application.ViewModels;
+using QuizDickTionary.Application.Models;
 
 namespace QuizDickTionary
 {
@@ -18,7 +20,10 @@ namespace QuizDickTionary
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<IViewModelFactory, ViewModelFactory>();
+            builder.Services.AddSingleton<MainWindowViewModel>();
+            builder.Services.AddSingleton<WelcomeViewModel>();
+            builder.Services.AddSingleton<EditWordsViewModel>();
             return builder.Build();
         }
     }

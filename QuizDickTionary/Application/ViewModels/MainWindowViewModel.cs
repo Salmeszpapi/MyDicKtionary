@@ -1,4 +1,5 @@
-﻿using QuizDickTionary.Application.Views;
+﻿using QuizDickTionary.Application.Models;
+using QuizDickTionary.Application.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace QuizDickTionary.Application.ViewModels
     {
         private MainWindowLayout _mainWindowLayout;
         private ContentView _contentView;
+
         public ContentView ContentView
         {
             get { return _contentView; }
@@ -20,12 +22,12 @@ namespace QuizDickTionary.Application.ViewModels
             }
         }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory) 
         {
-            ContentView = new WelcomeViewModel().GetView();
+            WelcomeViewModel welcomeViewModel= viewModelFactory.CreateViewModel<WelcomeViewModel>();
+            ContentView = welcomeViewModel.GetView();
             _mainWindowLayout = new MainWindowLayout() { BindingContext = this };
         }
-
         public ContentPage GetPage()
         {
             return _mainWindowLayout;
@@ -33,7 +35,7 @@ namespace QuizDickTionary.Application.ViewModels
 
         public void SetContentView(ContentView contentView)
         {
-
+            ContentView = contentView;
         }
     }
 }

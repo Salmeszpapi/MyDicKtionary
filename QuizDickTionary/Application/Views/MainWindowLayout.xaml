@@ -10,6 +10,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <HorizontalStackLayout Grid.Row="0" Background="Orange">
             <ImageButton Margin="5" 
                     Source="quiz.png"
@@ -17,6 +21,13 @@
                     VerticalOptions="Center" 
                     HorizontalOptions="Center" />
         </HorizontalStackLayout>
-        <ContentView Grid.Row="1" Content="{Binding ContentView}" VerticalOptions="FillAndExpand" />
+        <HorizontalStackLayout Grid.Row="0" Grid.Column="1" Background="Orange">
+            <ImageButton Margin="5" 
+                    Source="quiz.png"
+                    HeightRequest="50"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+        <ContentView Grid.Row="1" Grid.ColumnSpan="2" Content="{Binding ContentView}" VerticalOptions="FillAndExpand" />
     </Grid>
 </ContentPage>

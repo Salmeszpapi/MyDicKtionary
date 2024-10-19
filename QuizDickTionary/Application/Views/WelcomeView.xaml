@@ -10,19 +10,19 @@
              HeightRequest="50"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
-                <ImageButton Command="{Binding StartEdit}" Margin="5" 
+                <ImageButton Command="{Binding EditCommand}" Margin="5" 
              Source="draw.png"
              HeightRequest="50"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <ImageButton Command="{Binding StartQuizCommand}" Margin="5" 
+                <ImageButton Command="{Binding HystoryCommand}" Margin="5" 
              Source="history.png"
              HeightRequest="50"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
-                <ImageButton Command="{Binding StartQuizCommand}" Margin="5" 
+                <ImageButton Command="{Binding SettingsCommand}" Margin="5" 
              Source="settings.png"
              HeightRequest="50"
              VerticalOptions="Center" 
