@@ -24,7 +24,6 @@
                                 <Entry Text="{Binding Hungarian}" />
                             </VerticalStackLayout>
                         </HorizontalStackLayout>
-
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

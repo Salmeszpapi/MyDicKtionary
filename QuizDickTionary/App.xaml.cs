@@ -8,19 +8,14 @@ namespace QuizDickTionary
     public partial class App
     {
         private static WordDatabase _database;
-        public static WordDatabase Database
-        {
-            get
-            {
-                return _database;
-            }
-        }
-        public App(IViewModelFactory viewModelFactory)
+        public static WordDatabase Database => _database;
+
+        public App(WordDatabase database, IViewModelFactory viewModelFactory)
         {
             InitializeComponent();
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Words.db3"); // Fixed usage here
-            _database = new WordDatabase(dbPath);
-            InitializeAsync();
+
+            _database = database;
+            InitializeAsync().ConfigureAwait(true); // Call async initialization here
             var mainViewModel = viewModelFactory.CreateViewModel<MainWindowViewModel>();
             MainPage = mainViewModel.GetPage();
         }
