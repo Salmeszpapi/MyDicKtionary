@@ -61,7 +61,7 @@ namespace QuizDickTionary.Application.ViewModels
                 var result = await App.Current.MainPage.DisplayAlert("Test", "Do you want load words from server?", "Yes", "No");
                 if (result)
                 {
-
+                    await ApiDataProvider.ReadExcel();
                 }
             }
             EditWordsViewModel editWordsViewModel = _viewModelFactory.CreateViewModel<EditWordsViewModel>();

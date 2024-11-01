@@ -6,4 +6,9 @@ public partial class EditWordsView : ContentView
 	{
 		InitializeComponent();
 	}
+
+    private void CollectionView_RemainingItemsThresholdReached(object sender, EventArgs e)
+    {
+
+    }
 }

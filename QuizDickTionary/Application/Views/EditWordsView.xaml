@@ -13,16 +13,17 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Text="Save changes"/> <!--Command="{Binding UpdateWords}-->
+        <Button Grid.Row="0" Text="Save changes"/>
         <ScrollView Grid.Column="0" Grid.Row="1">
-            <CollectionView ItemsSource="{Binding DictionaryWords}">
+            <CollectionView ItemsSource="{Binding DictionaryWords}" RemainingItemsThreshold="5" RemainingItemsThresholdReached="CollectionView_RemainingItemsThresholdReached">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="Word:WordDto">
-                        <HorizontalStackLayout>
+                        <HorizontalStackLayout Margin="0,10,0,4">
                             <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300">
-                                <Entry Text="{Binding English}" />
-                                <Entry Text="{Binding Hungarian}" />
+                                <Label Text="{Binding English}" />
+                                <Label Text="{Binding Hungarian}" />
                             </VerticalStackLayout>
+                            <Button Text="edit"></Button>
                         </HorizontalStackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -79,5 +79,19 @@ namespace QuizDickTionary.Domain.Models
         {
             return _database.DeleteAllAsync<WordDto>();
         }
+
+        public async Task<List<WordDto>> GetPagedWordsAsync(int pageNumber, int pageSize)
+        {
+            if (pageNumber < 1) pageNumber = 1; // Ensure page number is at least 1
+            if (pageSize < 1) pageSize = 1;     // Ensure page size is at least 1
+
+            // Calculate the number of items to skip based on the current page
+            int skip = (pageNumber - 1) * pageSize;
+
+            return await _database.Table<WordDto>()
+                .Skip(skip)
+                .Take(pageSize)
+                .ToListAsync();
+        }
     }
 }
