@@ -11,23 +11,23 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ImageButton Grid.Column="0" Grid.Row="0" Command="{Binding StartQuizCommand}" Margin="5" 
+        <ImageButton Grid.Column="0" Grid.Row="0" Command="{Binding StartQuizCommand}" Background="Transparent" Margin="5" 
              Source="quiz.png"
              HeightRequest="50"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
-        <ImageButton  Grid.Column="1" Grid.Row="0" Command="{Binding EditCommand}" Margin="5" 
+        <ImageButton  Grid.Column="1" Grid.Row="0" Command="{Binding EditCommand}" Background="Transparent" Margin="5" 
              Source="draw.png"
              HeightRequest="50"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
 
-        <ImageButton Grid.Column="0" Grid.Row="1" Command="{Binding HystoryCommand}" Margin="5" 
+        <ImageButton Grid.Column="0" Grid.Row="1" Command="{Binding HystoryCommand}" Background="Transparent" Margin="5" 
              Source="history.png"
              HeightRequest="50"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
-        <ImageButton  Grid.Column="1" Grid.Row="1" Command="{Binding SettingsCommand}" Margin="5" 
+        <ImageButton  Grid.Column="1" Grid.Row="1" Command="{Binding SettingsCommand}" Background="Transparent" Margin="5" 
              Source="settings.png"
              HeightRequest="50"
              VerticalOptions="Center" 

@@ -12,22 +12,22 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <HorizontalStackLayout Grid.Row="0" Background="Orange">
-            <ImageButton Margin="5" 
-                    Source="quiz.png"
-                    HeightRequest="50"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
-        </HorizontalStackLayout>
-        <HorizontalStackLayout Grid.Row="0" Grid.Column="1" Background="Orange">
-            <ImageButton Margin="5" 
-                    Source="quiz.png"
-                    HeightRequest="50"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" />
-        </HorizontalStackLayout>
-        <ContentView Grid.Row="1" Grid.ColumnSpan="2" Content="{Binding ContentView}" VerticalOptions="FillAndExpand" />
+        <StackLayout Background="Orange" Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton x:Name="BackButton" Grid.Column="0" Source="quiz.png" HeightRequest="50" Background="Transparent" HorizontalOptions="Start" >
+                </ImageButton>
+                <HorizontalStackLayout Grid.Column="1" Background="Orange" HorizontalOptions="Center" >
+                    <Label VerticalOptions="Center" Text="Dictionary" FontSize="25" FontAutoScalingEnabled="True" />
+                </HorizontalStackLayout>
+                
+            </Grid>
+        </StackLayout>
+        <ContentView Grid.Row="1" Content="{Binding ContentView}" VerticalOptions="FillAndExpand" />
     </Grid>
 </ContentPage>
