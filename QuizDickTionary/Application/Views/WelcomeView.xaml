@@ -2,7 +2,8 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizDickTionary.Application.Views.WelcomeView">
-    <Grid BackgroundColor="Orange">
+    <!--<Grid >
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
@@ -11,27 +12,55 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ImageButton Grid.Column="0" Grid.Row="0" Command="{Binding StartQuizCommand}" Background="Transparent" Margin="5" 
+        <ImageButton Grid.Column="0" Grid.Row="0" Command="{Binding StartQuizCommand}" Background="Wheat" Margin="5" 
              Source="quiz.png"
-             HeightRequest="50"
+             HeightRequest="100"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
-        <ImageButton  Grid.Column="1" Grid.Row="0" Command="{Binding EditCommand}" Background="Transparent" Margin="5" 
+        <ImageButton  Grid.Column="1" Grid.Row="0" Command="{Binding EditCommand}" Background="Wheat" Margin="5" 
              Source="draw.png"
-             HeightRequest="50"
+             HeightRequest="100"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
 
-        <ImageButton Grid.Column="0" Grid.Row="1" Command="{Binding HystoryCommand}" Background="Transparent" Margin="5" 
+        <ImageButton Grid.Column="0" Grid.Row="1" Command="{Binding HystoryCommand}" Background="Wheat" Margin="5" 
              Source="history.png"
-             HeightRequest="50"
+             HeightRequest="100"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
         <ImageButton  Grid.Column="1" Grid.Row="1" Command="{Binding SettingsCommand}" Background="Transparent" Margin="5" 
              Source="settings.png"
-             HeightRequest="50"
+             HeightRequest="100"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
         
-    </Grid>
+    </Grid>-->
+
+    <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  >
+        <HorizontalStackLayout>
+            <ImageButton Command="{Binding StartQuizCommand}" Background="Wheat" Margin="5" 
+             Source="quiz.png"
+             HeightRequest="100" WidthRequest="100"
+             VerticalOptions="Center" 
+             HorizontalOptions="Center" />
+            <ImageButton  Command="{Binding EditCommand}" Background="Wheat" Margin="5" 
+             Source="draw.png"
+             HeightRequest="100" WidthRequest="100"
+             VerticalOptions="Center" 
+             HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <ImageButton Command="{Binding HystoryCommand}" Background="Wheat" Margin="5" 
+             Source="history.png"
+             HeightRequest="100" WidthRequest="100"
+             VerticalOptions="Center" 
+             HorizontalOptions="Center" />
+            <ImageButton Command="{Binding SettingsCommand}" Background="Wheat" Margin="5" 
+             Source="settings.png"
+             HeightRequest="100" WidthRequest="100"
+             VerticalOptions="Center" 
+             HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+    </StackLayout>
 </ContentView>

@@ -16,10 +16,5 @@ namespace QuizDickTionary.Application.ViewModels
         {
             //CloseDecision = new Command()
         }
-
-        public async Task Test()
-        {
-
-        }
     }
 }

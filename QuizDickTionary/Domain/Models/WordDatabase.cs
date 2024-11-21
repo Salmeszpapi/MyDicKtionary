@@ -47,6 +47,23 @@ namespace QuizDickTionary.Domain.Models
             return await _database.Table<WordDto>().CountAsync() > 0;
         }
 
+        public async Task<int> HasRecords()
+        {
+            return await _database.ExecuteScalarAsync<int>("SELECT COUNT(*) from WordDto");
+        }
+
+        public async Task<int> GetWordDtoRecordCountAsync()
+        {
+            return await _database.ExecuteScalarAsync<int>("SELECT COUNT(*) FROM WordDto");
+        }
+
+        public async Task<List<string>> GetTableNamesAsync()
+        {
+            var tableNames = await _database.QueryScalarsAsync<string>(
+                "SELECT name FROM sqlite_master WHERE type='table'");
+            return tableNames;
+        }
+
         public async Task<List<WordDto>> GetWordsAsync()
         {
             return await _database.Table<WordDto>().ToListAsync();

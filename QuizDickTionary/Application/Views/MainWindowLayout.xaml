@@ -6,28 +6,29 @@
              Title="MainWindowLayout"
              x:DataType="viewmodel:MainWindowViewModel">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <StackLayout Background="Orange" Padding="5">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <ImageButton x:Name="BackButton" Grid.Column="0" Source="quiz.png" HeightRequest="50" Background="Transparent" HorizontalOptions="Start" >
-                </ImageButton>
-                <HorizontalStackLayout Grid.Column="1" Background="Orange" HorizontalOptions="Center" >
-                    <Label VerticalOptions="Center" Text="Dictionary" FontSize="25" FontAutoScalingEnabled="True" />
-                </HorizontalStackLayout>
-                
-            </Grid>
-        </StackLayout>
-        <ContentView Grid.Row="1" Content="{Binding ContentView}" VerticalOptions="FillAndExpand" />
+        <Image Source="wood.jpg" Aspect="AspectFill"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                <Grid Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                <ImageButton x:Name="BackButton" IsVisible="{Binding IsBackButtonEnabled}" Command="{Binding BackToPreviousViewCommand}" Grid.Column="0" Source="back.png" HeightRequest="50" HorizontalOptions="Start" >
+                    </ImageButton>
+                    <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center" >
+                        <Label VerticalOptions="Center" Text="Dictionary" FontSize="25" FontAutoScalingEnabled="True" />
+                    </HorizontalStackLayout>
+                </Grid>
+            <ContentView Grid.Row="1" Content="{Binding ContentView}" />
+        </Grid>
     </Grid>
+    
 </ContentPage>

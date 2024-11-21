@@ -3,31 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizDickTionary.Application.Views.EditWordsView"
              xmlns:binding="clr-namespace:QuizDickTionary.Application.ViewModels"
-             xmlns:Word="clr-namespace:QuizDickTionary.Domain.Dtos"
+             xmlns:Word="clr-namespace:QuizDickTionary.Domain.Models"
+             xmlns:converters="clr-namespace:QuizDickTionary.Application.Views.Converters"
              x:DataType="binding:EditWordsViewModel">
-    <Grid BackgroundColor="AliceBlue" Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Button Grid.Row="0" Text="Save changes"/>
-        <ScrollView Grid.Column="0" Grid.Row="1">
-            <CollectionView ItemsSource="{Binding DictionaryWords}" RemainingItemsThreshold="5" RemainingItemsThresholdReached="CollectionView_RemainingItemsThresholdReached">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Word:WordDto">
-                        <HorizontalStackLayout Margin="0,10,0,4">
-                            <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300">
-                                <Label Text="{Binding English}" />
-                                <Label Text="{Binding Hungarian}" />
-                            </VerticalStackLayout>
-                            <Button Text="edit"></Button>
-                        </HorizontalStackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <Grid >
+        <Image Source="wood.jpg" Aspect="AspectFill" />
+        <Grid  Margin="50">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="0" Text="Save changes"/>
+            <ScrollView Grid.Column="0" Grid.Row="1" Background="Wheat">
+                <CollectionView ItemsSource="{Binding DictionaryWords}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="Word:Word">
+                            <HorizontalStackLayout>
+                                <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300" Margin="10">
+
+                                    <!-- English Field -->
+                                    <Label Text="{Binding English}" 
+                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+                                    <Entry Text="{Binding English, Mode=TwoWay}" 
+                           IsVisible="{Binding IsEditing}" />
+
+                                    <!-- Hungarian Field -->
+                                    <Label Text="{Binding Hungarian}" 
+                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+                                    <Entry Text="{Binding Hungarian, Mode=TwoWay}" 
+                           IsVisible="{Binding IsEditing}" />
+
+                                </VerticalStackLayout>
+                                <Button Text="Edit" Command="{Binding}"/>
+                            </HorizontalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
+        </Grid>
     </Grid>
+    
 </ContentView>

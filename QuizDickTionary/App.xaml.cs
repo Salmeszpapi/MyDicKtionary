@@ -22,7 +22,8 @@ namespace QuizDickTionary
 
         private async Task InitializeAsync()
         {
-            if (await _database.IsEmptyTable())
+            var records = await App.Database.GetWordDtoRecordCountAsync();
+            if (records == 0)
             {
                 await ApiDataProvider.ReadExcel();
             }

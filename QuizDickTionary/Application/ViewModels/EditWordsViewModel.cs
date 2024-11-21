@@ -7,23 +7,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using QuizDickTionary.Domain.Dtos;
+using QuizDickTionary.Domain.Models;
+using System.Windows.Input;
 
 namespace QuizDickTionary.Application.ViewModels
 {
     public class EditWordsViewModel : BaseViewModel
     {
         public Command OnRemainingItemsThresholdReachedCommand;
-        
+
         private List<WordDto> _words = new List<WordDto>();
         private const int PageSize = 50;
         private int _currentPage = 0;
-
-        public ObservableCollection<WordDto> DictionaryWords { get; private set; } = new ObservableCollection<WordDto>();
-
+        public double Transparency => 0.5;
+        public ObservableCollection<Word> DictionaryWords { get; private set; } = new ObservableCollection<Word>();
+        public ICommand EditWordCommand { get; private set; }
         private EditWordsView _editWordsView;
         public EditWordsViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory)
         {
-            _editWordsView = new EditWordsView() { BindingContext = this};
+            _editWordsView = new EditWordsView() { BindingContext = this };
+            EditWordCommand = new Command<Word>(ToggleEditMode);
             InicializeAsync();
         }
 
@@ -32,7 +35,8 @@ namespace QuizDickTionary.Application.ViewModels
             var words = await App.Database.GetWordsAsync();
             foreach (var word in words)
             {
-                DictionaryWords.Add(word); // Populate the ObservableCollection
+                var wordViewModel = new Word(word);
+                DictionaryWords.Add(wordViewModel);
             }
         }
 
@@ -48,12 +52,23 @@ namespace QuizDickTionary.Application.ViewModels
 
         public async Task LoadMoreWords()
         {
+
             var newWords = await App.Database.GetPagedWordsAsync(_currentPage * PageSize, PageSize);
             foreach (var word in newWords)
             {
-                DictionaryWords.Add(word); // Add new words to the ObservableCollection
+                var wordViewModel = new Word(word); // Wrap DTO in ViewModel
+                DictionaryWords.Add(wordViewModel);
             }
             _currentPage++;
         }
+
+        private void ToggleEditMode(Word word)
+        {
+            if (word != null)
+            {
+                word.IsEditing = !word.IsEditing;  // Toggle the IsEditing property
+            }
+        }
+
     }
 }

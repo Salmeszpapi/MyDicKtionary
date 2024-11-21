@@ -67,10 +67,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\back.png" />
 	  <None Remove="Resources\Images\draw.png" />
 	  <None Remove="Resources\Images\history.png" />
 	  <None Remove="Resources\Images\quiz.png" />
 	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\wood.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
