@@ -9,66 +9,56 @@ using System.Collections.ObjectModel;
 using QuizDickTionary.Domain.Dtos;
 using QuizDickTionary.Domain.Models;
 using System.Windows.Input;
+using QuizDickTionary.Application.ViewModels.Components;
 
 namespace QuizDickTionary.Application.ViewModels
 {
     public class EditWordsViewModel : BaseViewModel
     {
-        public Command OnRemainingItemsThresholdReachedCommand;
-
-        private List<WordDto> _words = new List<WordDto>();
-        private const int PageSize = 50;
+        private readonly int _pageSize = 50;
         private int _currentPage = 0;
-        public double Transparency => 0.5;
-        public ObservableCollection<Word> DictionaryWords { get; private set; } = new ObservableCollection<Word>();
-        public ICommand EditWordCommand { get; private set; }
-        private EditWordsView _editWordsView;
-        public EditWordsViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory)
+        private IViewModelFactory _viewModelFactory;
+        private EditWordsView _contentView;
+
+
+        public ObservableCollection<WordViewModel> DictionaryWords { get; } = new ObservableCollection<WordViewModel>();
+        public ICommand LoadMoreCommand { get; }
+
+
+        public EditWordsViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory) 
         {
-            _editWordsView = new EditWordsView() { BindingContext = this };
-            EditWordCommand = new Command<Word>(ToggleEditMode);
-            InicializeAsync();
+            _viewModelFactory = viewModelFactory;
+            LoadMoreCommand = new Command(async () => await LoadMoreWordsAsync());
+            _contentView = new EditWordsView() { BindingContext = this };
+            InitializeAsync();
         }
 
-        private async void InicializeAsync()
+        private async Task InitializeAsync()
         {
             var words = await App.Database.GetWordsAsync();
-            foreach (var word in words)
-            {
-                var wordViewModel = new Word(word);
-                DictionaryWords.Add(wordViewModel);
-            }
+            AddWordsToCollection(words);
         }
 
-        public void OnRemainingItemsThresholdReached(object sender, EventArgs e)
+        private async Task LoadMoreWordsAsync()
         {
-            LoadMoreWords(); // Call the method to load more items
+            var newWords = await App.Database.GetPagedWordsAsync(_currentPage * _pageSize, _pageSize);
+            AddWordsToCollection(newWords);
+            _currentPage++;
+        }
+
+        private void AddWordsToCollection(IEnumerable<WordDto> wordDtos)
+        {
+            foreach (var dto in wordDtos)
+            {
+                var wordViewModel = _viewModelFactory.CreateViewModel<WordViewModel>();
+                wordViewModel.InitializeContent(dto);
+                DictionaryWords.Add(wordViewModel);
+            }
         }
 
         public ContentView GetView()
         {
-            return _editWordsView;
+            return _contentView;
         }
-
-        public async Task LoadMoreWords()
-        {
-
-            var newWords = await App.Database.GetPagedWordsAsync(_currentPage * PageSize, PageSize);
-            foreach (var word in newWords)
-            {
-                var wordViewModel = new Word(word); // Wrap DTO in ViewModel
-                DictionaryWords.Add(wordViewModel);
-            }
-            _currentPage++;
-        }
-
-        private void ToggleEditMode(Word word)
-        {
-            if (word != null)
-            {
-                word.IsEditing = !word.IsEditing;  // Toggle the IsEditing property
-            }
-        }
-
     }
 }

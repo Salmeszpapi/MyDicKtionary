@@ -1,10 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizDickTionary.Application.Views.EditWordsView"
              xmlns:binding="clr-namespace:QuizDickTionary.Application.ViewModels"
+             xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
              xmlns:Word="clr-namespace:QuizDickTionary.Domain.Models"
              xmlns:converters="clr-namespace:QuizDickTionary.Application.Views.Converters"
+             BindingContext="binding:EditWordsViewModel"
+             x:Name="RootContentView"
              x:DataType="binding:EditWordsViewModel">
 
     <ContentView.Resources>
@@ -12,11 +14,10 @@
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
-    
+
     <Grid >
         <Image Source="wood.jpg" Aspect="AspectFill" />
-        <Grid  Margin="50">
-
+        <Grid Margin="50">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -25,28 +26,28 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
+
             <Button Grid.Row="0" Text="Save changes"/>
+
             <ScrollView Grid.Column="0" Grid.Row="1" Background="Wheat">
                 <CollectionView ItemsSource="{Binding DictionaryWords}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="Word:Word">
+                        <DataTemplate x:DataType="components:WordViewModel">
                             <HorizontalStackLayout>
                                 <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300" Margin="10">
-
                                     <!-- English Field -->
                                     <Label Text="{Binding English}" 
-                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+                                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
                                     <Entry Text="{Binding English, Mode=TwoWay}" 
-                           IsVisible="{Binding IsEditing}" />
-
+                                           IsVisible="{Binding IsEditing}" />
                                     <!-- Hungarian Field -->
                                     <Label Text="{Binding Hungarian}" 
-                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+                                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
                                     <Entry Text="{Binding Hungarian, Mode=TwoWay}" 
-                           IsVisible="{Binding IsEditing}" />
-
+                                           IsVisible="{Binding IsEditing}" />
                                 </VerticalStackLayout>
-                                <Button Text="Edit" Command="{Binding}"/>
+                                <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}" Margin="5"/>
+                                <Polyline StrokeThickness="1" BackgroundColor="Black" />
                             </HorizontalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -54,5 +55,4 @@
             </ScrollView>
         </Grid>
     </Grid>
-    
 </ContentView>

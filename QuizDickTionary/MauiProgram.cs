@@ -3,6 +3,7 @@ using QuizDickTionary.Application.ViewModels;
 using QuizDickTionary.Application.Models;
 using QuizDickTionary.Domain.Models;
 using CommunityToolkit.Maui;
+using QuizDickTionary.Application.ViewModels.Components;
 
 namespace QuizDickTionary
 {
@@ -28,6 +29,8 @@ namespace QuizDickTionary
             builder.Services.AddSingleton<MainWindowViewModel>();
             builder.Services.AddSingleton<WelcomeViewModel>();
             builder.Services.AddSingleton<EditWordsViewModel>();
+            builder.Services.AddTransient<WordViewModel>();
+
             return builder.Build();
         }
     }
