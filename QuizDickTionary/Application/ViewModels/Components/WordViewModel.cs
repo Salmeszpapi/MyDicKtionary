@@ -12,9 +12,38 @@ namespace QuizDickTionary.Application.ViewModels.Components
 {
     public class WordViewModel : BaseViewModel
     {
-        public string English { get; set; }
-        public string Hungarian { get; set; }
-        public bool IsEditing { get; set; } 
+        public int Id { get; set; }
+
+        private string _hungarian;
+        public string Hungarian
+        {
+            get { return _hungarian; }
+            set { InternalSetPropertyValue(ref _hungarian, value); }
+        }
+
+        private string _slovak;
+        public string Slovak
+        {
+            get { return _slovak; }
+            set { InternalSetPropertyValue(ref _slovak, value);}
+        }
+
+        private string _english;
+        public string English
+        {
+            get { return _english; }
+            set { InternalSetPropertyValue(ref _english, value); }
+        }
+
+        public int Difficulty { get; set; }
+
+        private bool _isEditing;
+        public bool IsEditing
+        {
+            get { return _isEditing; }
+            set { InternalSetPropertyValue(ref _isEditing, value); }
+        }
+
         public ICommand EditCommand { get; set; }
         private string _editButtonText;
         public string EditButtonText {
@@ -30,13 +59,23 @@ namespace QuizDickTionary.Application.ViewModels.Components
 
         public void InitializeContent(WordDto word)
         {
+            Id = word.Id;
             English = word.English;
             Hungarian = word.Hungarian;
         }
-        private void EditButtonPressed()
+        private async void EditButtonPressed()
         {
+            if (_isEditing) 
+            {
+                SaveWordToDb();
+            }
+            EditButtonText = IsEditing ? "Edit" : "Save";
             IsEditing = !IsEditing;
-            EditButtonText = IsEditing ? "Save" : "Edit";
+        }
+
+        private async void SaveWordToDb()
+        {
+            await App.Database.UpdateWord(new WordDto() { Id = Id, Hungarian = Hungarian, English = English, Difficulty = Difficulty, Slovak = Slovak });
         }
     }
 }

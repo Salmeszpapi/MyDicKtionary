@@ -4,16 +4,10 @@
              xmlns:binding="clr-namespace:QuizDickTionary.Application.ViewModels"
              xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
              xmlns:Word="clr-namespace:QuizDickTionary.Domain.Models"
-             xmlns:converters="clr-namespace:QuizDickTionary.Application.Views.Converters"
+             xmlns:View="clr-namespace:QuizDickTionary.Application.Views"
              BindingContext="binding:EditWordsViewModel"
              x:Name="RootContentView"
              x:DataType="binding:EditWordsViewModel">
-
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
-        </ResourceDictionary>
-    </ContentView.Resources>
 
     <Grid >
         <Image Source="wood.jpg" Aspect="AspectFill" />
@@ -32,23 +26,8 @@
             <ScrollView Grid.Column="0" Grid.Row="1" Background="Wheat">
                 <CollectionView ItemsSource="{Binding DictionaryWords}">
                     <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="components:WordViewModel">
-                            <HorizontalStackLayout>
-                                <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300" Margin="10">
-                                    <!-- English Field -->
-                                    <Label Text="{Binding English}" 
-                                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
-                                    <Entry Text="{Binding English, Mode=TwoWay}" 
-                                           IsVisible="{Binding IsEditing}" />
-                                    <!-- Hungarian Field -->
-                                    <Label Text="{Binding Hungarian}" 
-                                           IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
-                                    <Entry Text="{Binding Hungarian, Mode=TwoWay}" 
-                                           IsVisible="{Binding IsEditing}" />
-                                </VerticalStackLayout>
-                                <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}" Margin="5"/>
-                                <Polyline StrokeThickness="1" BackgroundColor="Black" />
-                            </HorizontalStackLayout>
+                        <DataTemplate>
+                            <View:WordView />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

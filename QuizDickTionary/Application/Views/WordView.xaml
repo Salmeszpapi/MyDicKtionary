@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
+             x:DataType="components:WordViewModel"
+             xmlns:converters="clr-namespace:QuizDickTionary.Application.Views.Converters"
+             x:Class="QuizDickTionary.Application.Views.WordView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <HorizontalStackLayout>
+        <VerticalStackLayout MinimumWidthRequest="300" MaximumWidthRequest="300" Margin="10">
+            <VerticalStackLayout HeightRequest="35">
+                <Label Text="{Binding English}" 
+                   IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+                <Entry Text="{Binding English, Mode=TwoWay}" BackgroundColor="AliceBlue"
+                   IsVisible="{Binding IsEditing}" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout HeightRequest="35">
+                <Label Text="{Binding Hungarian}" 
+                   IsVisible="{Binding IsEditing, Converter={StaticResource InverseBooleanConverter}}" />
+                <Entry Text="{Binding Hungarian, Mode=TwoWay}" BackgroundColor="AliceBlue" 
+                   IsVisible="{Binding IsEditing}" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+        <Button Text="{Binding EditButtonText}" Command="{Binding EditCommand}" Margin="5" HeightRequest="50"/>
+        <Polyline StrokeThickness="1" BackgroundColor="Black" />
+    </HorizontalStackLayout>
+</ContentView>

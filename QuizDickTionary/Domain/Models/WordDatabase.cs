@@ -79,6 +79,11 @@ namespace QuizDickTionary.Domain.Models
             return _database.DeleteAsync(word);
         }
 
+        public Task UpdateWord(WordDto word)
+        {
+            return _database.UpdateAsync(word);
+        }
+
         public void UpdateDictionary(List<Word> words)
         {
             foreach (var item in words)

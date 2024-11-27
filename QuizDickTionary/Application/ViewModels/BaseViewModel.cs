@@ -1,5 +1,6 @@
 ﻿using QuizDickTionary.Application.Models;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace QuizDickTionary.Application.ViewModels
 {
@@ -23,7 +24,7 @@ namespace QuizDickTionary.Application.ViewModels
             MainWindowViewModel = viewModelFactory.CreateViewModel<MainWindowViewModel>();
         }
 
-        protected void InternalSetPropertyValue<T>(ref T field, T value, string propertyName)
+        protected void InternalSetPropertyValue<T>(ref T field, T value, [CallerMemberName] string propertyName="")
         {
             if (!Equals(field, value))
             {

@@ -11,12 +11,12 @@ namespace QuizDickTionary.Application.Views.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(bool)value;
+            return value is bool boolValue ? !boolValue : false;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(bool)value;
+            return value is bool boolValue ? !boolValue : false;
         }
     }
 }

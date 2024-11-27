@@ -47,6 +47,7 @@ namespace QuizDickTionary.Services
                                     {
                                         WordDto word = new WordDto()
                                         {
+                                            Id = row,
                                             English = englishWord,
                                             Hungarian = hungarianWord
                                         };

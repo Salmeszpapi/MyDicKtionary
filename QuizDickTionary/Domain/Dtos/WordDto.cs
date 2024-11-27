@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace QuizDickTionary.Domain.Dtos
 {
     public class WordDto
     {
-        [Key]
+        [PrimaryKey]
         public int Id { get;  set; }
         public string Slovak { get; set; }
         public string Hungarian { get; set; }
