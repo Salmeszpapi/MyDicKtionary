@@ -67,13 +67,13 @@ namespace QuizDickTionary.Application.ViewModels.Components
         {
             if (_isEditing) 
             {
-                SaveWordToDb();
+                await SaveWordToDb();
             }
             EditButtonText = IsEditing ? "Edit" : "Save";
             IsEditing = !IsEditing;
         }
 
-        private async void SaveWordToDb()
+        private async Task SaveWordToDb()
         {
             await App.Database.UpdateWord(new WordDto() { Id = Id, Hungarian = Hungarian, English = English, Difficulty = Difficulty, Slovak = Slovak });
         }
