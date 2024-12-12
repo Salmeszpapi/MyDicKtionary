@@ -10,7 +10,6 @@
              x:DataType="binding:EditWordsViewModel">
 
     <Grid >
-        <Image Source="wood.jpg" Aspect="AspectFill" />
         <Grid Margin="50">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

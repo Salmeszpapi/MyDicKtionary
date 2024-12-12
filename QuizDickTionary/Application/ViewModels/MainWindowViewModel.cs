@@ -21,12 +21,13 @@ namespace QuizDickTionary.Application.ViewModels
             _mainWindowLayout = new MainWindowLayout() { BindingContext = this };
         }
 
-        private void ReturnToPreviousView(object obj)
+        private void ReturnToPreviousView()
         {
             if (previousPages.Any())
             {
                 ContentView = previousPages.Last();
                 previousPages.Remove(previousPages.Last());
+                UpdateBackButtonState();
             }            
         }
 
@@ -37,14 +38,20 @@ namespace QuizDickTionary.Application.ViewModels
             get { return _contentView; }
             set
             {
-                if (_contentView != null)
+                if (_contentView != null && (previousPages.Count == 0 || value != previousPages.Last()))
                 {
                     previousPages.Add(_contentView);
-                    IsBackButtonEnabled = !_isBackButtonEnabled;
                 }
 
                 InternalSetPropertyValue(ref _contentView, value, nameof(ContentView));
+
+                UpdateBackButtonState();
             }
+        }
+
+        private void UpdateBackButtonState()
+        {
+            IsBackButtonEnabled = previousPages.Any();
         }
 
         private bool _isBackButtonEnabled;

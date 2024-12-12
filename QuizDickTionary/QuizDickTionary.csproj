@@ -91,6 +91,9 @@
 	  <MauiXaml Update="Application\Views\MainWindowLayout.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Application\Views\QuizView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Application\Views\WelcomeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

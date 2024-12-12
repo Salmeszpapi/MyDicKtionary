@@ -19,6 +19,7 @@ namespace QuizDickTionary.Application.ViewModels
         public Command HystoryCommand { get; set; }
         public Command SettingsCommand { get; set; }
         private readonly IViewModelFactory _viewModelFactory;
+        private EditWordsViewModel _editWordsViewModel;
         public WelcomeViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory)
         {
             _viewModelFactory = viewModelFactory;
@@ -26,7 +27,7 @@ namespace QuizDickTionary.Application.ViewModels
             EditCommand = new Command(EditWords);
             StartQuizCommand = new Command(StartQuiz);
             HystoryCommand = new Command(OpenHystory);
-
+            _editWordsViewModel = _viewModelFactory.CreateViewModel<EditWordsViewModel>();
             _contentView = new WelcomeView() {  BindingContext = this};
         }
 
@@ -45,6 +46,11 @@ namespace QuizDickTionary.Application.ViewModels
 
         private void StartQuiz()
         {
+            OnModelLoaded();
+            QuizViewModel viewModel = new QuizViewModel();
+            QuizView quizView = new QuizView() { BindingContext = viewModel};
+
+            MainWindowViewModel.ContentView = quizView;
         }
 
         private void OpenHystory()
@@ -64,8 +70,8 @@ namespace QuizDickTionary.Application.ViewModels
                     await ApiDataProvider.ReadExcel();
                 }
             }
-            EditWordsViewModel editWordsViewModel = _viewModelFactory.CreateViewModel<EditWordsViewModel>();
-            MainWindowViewModel.ContentView = editWordsViewModel.GetView();
+
+            MainWindowViewModel.ContentView = _editWordsViewModel.GetView();
         }
     }
 }
