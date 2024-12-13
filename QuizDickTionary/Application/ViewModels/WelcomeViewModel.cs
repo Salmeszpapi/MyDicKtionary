@@ -44,7 +44,7 @@ namespace QuizDickTionary.Application.ViewModels
             
         }
 
-        private void StartQuiz()
+        private async void StartQuiz()
         {
             OnModelLoaded();
             QuizViewModel viewModel = new QuizViewModel();
@@ -63,7 +63,6 @@ namespace QuizDickTionary.Application.ViewModels
             var _dictionaryWords = await App.Database.GetWordsAsync();
             if (!_dictionaryWords.Any()) // in case there are no words, try to reload the dictionary from the server 
             {
-                var popup = new IncidentPopup();
                 var result = await App.Current.MainPage.DisplayAlert("Test", "Do you want load words from server?", "Yes", "No");
                 if (result)
                 {

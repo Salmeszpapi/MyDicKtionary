@@ -102,6 +102,16 @@ namespace QuizDickTionary.Domain.Models
             return _database.DeleteAllAsync<WordDto>();
         }
 
+        public async Task<List<WordDto>> GetWordsForQuiz(int countOfWords)
+        {
+            var allWords = await _database.Table<WordDto>().ToListAsync();
+            var random = new Random();
+            var uniqueWords = allWords.OrderBy(x => random.Next())
+                                      .Take(countOfWords)
+                                      .ToList();
+            return uniqueWords;
+        }
+
         public async Task<List<WordDto>> GetPagedWordsAsync(int pageNumber, int pageSize)
         {
             if (pageNumber < 1) pageNumber = 1; // Ensure page number is at least 1
