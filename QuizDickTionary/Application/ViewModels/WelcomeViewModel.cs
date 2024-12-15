@@ -47,7 +47,7 @@ namespace QuizDickTionary.Application.ViewModels
         private async void StartQuiz()
         {
             OnModelLoaded();
-            QuizViewModel viewModel = new QuizViewModel();
+            QuizViewModel viewModel = new QuizViewModel(_viewModelFactory);
             QuizView quizView = new QuizView() { BindingContext = viewModel};
 
             MainWindowViewModel.ContentView = quizView;

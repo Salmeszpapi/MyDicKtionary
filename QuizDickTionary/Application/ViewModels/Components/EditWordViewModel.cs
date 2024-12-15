@@ -1,5 +1,6 @@
 ﻿using QuizDickTionary.Application.Models;
 using QuizDickTionary.Domain.Dtos;
+using QuizDickTionary.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Input;
 
 namespace QuizDickTionary.Application.ViewModels.Components
 {
-    public class WordViewModel : BaseViewModel
+    public class EditWordViewModel : BaseViewModel
     {
         public int Id { get; set; }
 
@@ -43,9 +44,18 @@ namespace QuizDickTionary.Application.ViewModels.Components
             set { InternalSetPropertyValue(ref _isEditing, value); }
         }
 
-
-        public WordViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory)
+        public ICommand EditCommand { get; set; }
+        private string _editButtonText;
+        public string EditButtonText
         {
+            get { return _editButtonText; }
+            set { InternalSetPropertyValue(ref _editButtonText, value, nameof(EditButtonText)); }
+        }
+
+        public EditWordViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory)
+        {
+            EditButtonText = "Edit";
+            EditCommand = new Command(EditButtonPressed);
         }
 
         public void InitializeContent(WordDto word)
@@ -56,9 +66,14 @@ namespace QuizDickTionary.Application.ViewModels.Components
         }
         private async void EditButtonPressed()
         {
+            if (_isEditing)
+            {
+                await SaveWordToDb();
+            }
+            EditButtonText = IsEditing ? "Edit" : "Save";
+            IsEditing = !IsEditing;
         }
 
-        // I keep this for hisory inmplementation
         private async Task SaveWordToDb()
         {
             await App.Database.UpdateWord(new WordDto() { Id = Id, Hungarian = Hungarian, English = English, Difficulty = Difficulty, Slovak = Slovak });

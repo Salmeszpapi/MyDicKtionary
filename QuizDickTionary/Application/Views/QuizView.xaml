@@ -2,7 +2,9 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QuizDickTionary.Application.Views.QuizView"
-             xmlns:vm ="clr-namespace:QuizDickTionary.Application.ViewModels"
+             xmlns:view="clr-namespace:QuizDickTionary.Application.Views"
+             xmlns:vm="clr-namespace:QuizDickTionary.Application.ViewModels"
+             xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
              x:DataType="vm:QuizViewModel">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,16 +29,18 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="3">
-                    <Label Grid.Column="0"  Text="1." />
+                    <Label Grid.Column="0" Text="1." />
+                    <Label Grid.Column="1" Text="What is what" HorizontalOptions="Center"/>
+                    <Label Grid.Column="2" Text="Time" HorizontalOptions="End" />
 
-                    <Label Grid.Column="1"  Text="What is what" HorizontalOptions="Center"/>
+                    <!-- Dynamic Content Binding -->
 
-                    <Label Grid.Column="2"  Text="Time" HorizontalOptions="End" />
-                </StackLayout>
-
+                <ContentView Grid.Row="1" Grid.ColumnSpan="3">
+                    <ContentView.Content>
+                        <view:StartQuizWord BindingContext="{Binding Question}" />
+                    </ContentView.Content>
+                </ContentView>
             </Grid>
-            
         </StackLayout>
     </Grid>
 </ContentView>

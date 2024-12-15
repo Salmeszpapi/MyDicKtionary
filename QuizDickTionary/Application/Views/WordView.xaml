@@ -2,7 +2,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
-             x:DataType="components:WordViewModel"
+             x:DataType="components:EditWordViewModel"
              xmlns:converters="clr-namespace:QuizDickTionary.Application.Views.Converters"
              x:Class="QuizDickTionary.Application.Views.WordView">
 

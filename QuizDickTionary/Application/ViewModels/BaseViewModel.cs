@@ -12,6 +12,7 @@ namespace QuizDickTionary.Application.ViewModels
         {
             this.viewModelFactory = viewModelFactory;
         }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         public MainWindowViewModel MainWindowViewModel { get; set; }
         public void OnPropertyChanged(string propertyName)

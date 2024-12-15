@@ -29,7 +29,7 @@ namespace QuizDickTionary
             builder.Services.AddSingleton<MainWindowViewModel>();
             builder.Services.AddSingleton<WelcomeViewModel>();
             builder.Services.AddSingleton<EditWordsViewModel>();
-            builder.Services.AddTransient<WordViewModel>();
+            builder.Services.AddTransient<EditWordViewModel>();
 
             return builder.Build();
         }

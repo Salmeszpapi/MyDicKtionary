@@ -85,6 +85,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Application\Views\EditWordView.xaml.cs">
+	    <DependentUpon>EditWordView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Application\Views\EditWordsView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -94,10 +100,13 @@
 	  <MauiXaml Update="Application\Views\QuizView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Application\Views\StartQuizWord.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Application\Views\WelcomeView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Application\Views\WordView.xaml">
+	  <MauiXaml Update="Application\Views\EditWordView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

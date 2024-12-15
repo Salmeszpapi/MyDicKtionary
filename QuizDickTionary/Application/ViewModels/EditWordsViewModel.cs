@@ -21,7 +21,7 @@ namespace QuizDickTionary.Application.ViewModels
         private EditWordsView _contentView;
 
 
-        public ObservableCollection<WordViewModel> DictionaryWords { get; } = new ObservableCollection<WordViewModel>();
+        public ObservableCollection<EditWordViewModel> DictionaryWords { get; } = new ObservableCollection<EditWordViewModel>();
         public ICommand LoadMoreCommand { get; }
 
 
@@ -50,7 +50,7 @@ namespace QuizDickTionary.Application.ViewModels
         {
             foreach (var dto in wordDtos)
             {
-                var wordViewModel = _viewModelFactory.CreateViewModel<WordViewModel>();
+                var wordViewModel = _viewModelFactory.CreateViewModel<EditWordViewModel>();
                 wordViewModel.InitializeContent(dto);
                 DictionaryWords.Add(wordViewModel);
             }

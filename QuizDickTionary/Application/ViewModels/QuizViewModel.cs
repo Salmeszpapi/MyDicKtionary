@@ -1,20 +1,42 @@
-﻿using QuizDickTionary.Domain.Dtos;
+﻿using QuizDickTionary.Application.Models;
+using QuizDickTionary.Application.ViewModels.Components;
+using QuizDickTionary.Domain.Dtos;
+using System.Collections.ObjectModel;
 
 namespace QuizDickTionary.Application.ViewModels
 {
-    internal class QuizViewModel
+    internal class QuizViewModel : BaseViewModel
     {
-        public int CountOfQuestions { get; set; } = 5;// for default i set 5 
+        private IViewModelFactory _viewModelFactory;
+        public int CountOfQuestions { get; set; } = 5;
         public string QuestionIndex { get; set; } = "hellooo";
-        public List<WordDto> Words { get; set; }
-        public QuizViewModel()
+        public ObservableCollection<WordViewModel> ObservableWordsViewModel { get; }
+        private WordViewModel _question;
+
+        public WordViewModel Question
         {
-            LoadQuizWords();
+            get { return _question; }
+            set { InternalSetPropertyValue(ref _question, value); }
         }
 
-        private async void LoadQuizWords()
+        public QuizViewModel(IViewModelFactory viewModelFactory) : base (viewModelFactory)
         {
-            Words = await App.Database.GetWordsForQuiz(CountOfQuestions);
+            ObservableWordsViewModel = new ObservableCollection<WordViewModel>();
+            _viewModelFactory = viewModelFactory;
+            LoadQuizViewModels();
+        }
+
+        private async void LoadQuizViewModels()
+        {
+            List<WordDto> words = await App.Database.GetWordsForQuiz(CountOfQuestions);
+
+            foreach (var word in words)
+            {
+                WordViewModel wordViewModel = new WordViewModel(_viewModelFactory);
+                wordViewModel.InitializeContent(word);
+                ObservableWordsViewModel.Add(wordViewModel);
+                Question = wordViewModel;
+            }
         }
     }
 }
