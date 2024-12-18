@@ -6,7 +6,7 @@
              Title="MainWindowLayout"
              x:DataType="viewmodel:MainWindowViewModel">
     <Grid>
-        <Image Source="wood.jpg" Aspect="AspectFill"/>
+        <Image Source="bck.png" Aspect="AspectFill"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

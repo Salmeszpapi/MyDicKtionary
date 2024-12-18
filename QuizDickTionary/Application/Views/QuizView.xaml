@@ -6,41 +6,66 @@
              xmlns:vm="clr-namespace:QuizDickTionary.Application.ViewModels"
              xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
              x:DataType="vm:QuizViewModel">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackLayout Grid.Column="1" Background="White" HeightRequest="300">
-            <Grid Margin="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Text="1." />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Column="1" Background="White" HeightRequest="300">
+                <Border 
+                Stroke="DarkBlue" 
+                StrokeThickness="4" 
+                StrokeShape="RoundRectangle 12" 
+                BackgroundColor="White"
+                Padding="5">
+                
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame
+                            Grid.Column="0"
+                            WidthRequest="40" 
+                            HeightRequest="40"
+                            CornerRadius="25"
+                            BackgroundColor="LightBlue"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
+                    <Label 
+                        Text="1." 
+                        FontAttributes="Bold" 
+                        FontSize="18"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center" 
+                        TextColor="White" />
+                                
+
                     <Label Grid.Column="1" Text="What is what" HorizontalOptions="Center"/>
                     <Label Grid.Column="2" Text="Time" HorizontalOptions="End" />
 
-                    <!-- Dynamic Content Binding -->
+                        <!-- Dynamic Content Binding -->
 
-                <ContentView Grid.Row="1" Grid.ColumnSpan="3">
-                    <ContentView.Content>
-                        <view:StartQuizWord BindingContext="{Binding Question}" />
-                    </ContentView.Content>
-                </ContentView>
-            </Grid>
+                    <ContentView Grid.Row="1" Grid.ColumnSpan="3">
+                        <ContentView.Content>
+                            <view:StartQuizWord BindingContext="{Binding Question}" />
+                        </ContentView.Content>
+                    </ContentView>
+                </Grid>
+            </Border>
         </StackLayout>
     </Grid>
 </ContentView>
