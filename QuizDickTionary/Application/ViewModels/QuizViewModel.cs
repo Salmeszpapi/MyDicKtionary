@@ -1,5 +1,6 @@
 ﻿using QuizDickTionary.Application.Models;
 using QuizDickTionary.Application.ViewModels.Components;
+using QuizDickTionary.Application.Views;
 using QuizDickTionary.Domain.Dtos;
 using System.Collections.ObjectModel;
 
@@ -71,7 +72,10 @@ namespace QuizDickTionary.Application.ViewModels
             if (IsFinishPressed())
             {
                 // new view with summary push -> _submitedAnswers
-
+                OnModelLoaded();
+                ShowResultQuizViewModel showResultQuizViewModel = new ShowResultQuizViewModel(_submitedAnswers);
+                ShowResultQuizView showResultQuizView = new ShowResultQuizView() { BindingContext = showResultQuizViewModel };
+                MainWindowViewModel.ContentView = showResultQuizView;
                 return;
             }
 
