@@ -57,7 +57,7 @@
                             FontSize="40" 
                             FontAttributes="Bold" 
                             TextColor="White"
-                            Text="What is what" 
+                            Text="{Binding Question.Hungarian}" 
                             LineBreakMode="TailTruncation"
                             HorizontalOptions="Center"/>
                     </Frame>
@@ -73,7 +73,7 @@
                         HasShadow="False">
 
                         <Label 
-                            Text="{Binding QuestionIndex}" 
+                            Text="{Binding CurrentQuizQuestion}" 
                             HorizontalTextAlignment="Center" 
                             VerticalTextAlignment="Center" 
                             FontFamily="Bitter bold"
@@ -89,6 +89,9 @@
 
                             </Entry>
 
+                        </ContentView.Content>
+                    </ContentView>-->
+                    
                     <Button
                         Command="{Binding SubmitCommand}" 
                         Text="{Binding SubmitButtonText}"

@@ -63,5 +63,9 @@ namespace QuizDickTionary.Application.ViewModels.Components
         {
             await App.Database.UpdateWord(new WordDto() { Id = Id, Hungarian = Hungarian, English = English, Difficulty = Difficulty, Slovak = Slovak });
         }
+        public WordDto WordDTopMap()
+        {
+            return new WordDto() { Id = Id, Hungarian = Hungarian, English = English, Difficulty = Difficulty, Slovak = Slovak };
+        }
     }
 }
