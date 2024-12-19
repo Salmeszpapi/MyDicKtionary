@@ -101,6 +101,9 @@
 	  <MauiXaml Update="Application\Views\QuizView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Application\Views\ShowResultQuizView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Application\Views\StartQuizWord.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
