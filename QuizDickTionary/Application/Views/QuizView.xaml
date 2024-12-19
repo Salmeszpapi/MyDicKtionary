@@ -87,6 +87,8 @@
                             <view:StartQuizWord BindingContext="{Binding Question}" />
                         </ContentView.Content>
                     </ContentView>
+                    
+                    <Button Command="{Binding SubmitCommand}" Text="{Binding SubmitButtonText}"/>
                 </Grid>
             </Border>
         </StackLayout>
