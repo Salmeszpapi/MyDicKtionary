@@ -54,12 +54,13 @@
                             Grid.Row="0"
                             Grid.Column="1" 
                             FontFamily="Bitter bold"
-                            FontSize="40" 
+                            FontSize="30" 
                             FontAttributes="Bold" 
                             TextColor="White"
                             Text="{Binding Question.Hungarian}" 
                             LineBreakMode="TailTruncation"
-                            HorizontalOptions="Center"/>
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
                     </Frame>
                     <Frame 
                         Grid.Column="0"
@@ -85,7 +86,8 @@
                             <Entry
                                     Text="lol"
                                     Grid.Row="1"
-                                    Background="White">
+                                    Background="White"
+                                    Margin="10">
 
                             </Entry>
 
