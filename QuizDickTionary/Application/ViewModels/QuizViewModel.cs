@@ -10,18 +10,15 @@ namespace QuizDickTionary.Application.ViewModels
         private IViewModelFactory _viewModelFactory;
         public int CountOfQuestions { get; set; } = 5;
         private int _crurrentQuiazQuestion;
-        private List<WordViewModel> _submitedAnswers = new List<WordViewModel>();
+        private List<WordWithAnswer> _submitedAnswers = new List<WordWithAnswer>();
         public int CurrentQuizQuestion
         {
             get { return _crurrentQuiazQuestion; }
             set { InternalSetPropertyValue(ref _crurrentQuiazQuestion, value); }
         }
         public Command SubmitCommand { get; set; }
-
-        private Timer _timer;
-
-        public string QuestionIndex { get; set; } = "hellooo";
         public ObservableCollection<WordViewModel> ObservableWordsViewModel { get; }
+        
         private WordViewModel _question;
 
         public WordViewModel Question
@@ -38,12 +35,12 @@ namespace QuizDickTionary.Application.ViewModels
             set { InternalSetPropertyValue(ref _submitButtonText, value); }
         }
 
-        private TimeOnly _currentTime;
+        private string _answer = "Test";
 
-        public TimeOnly CurrentTime
+        public string Answer 
         {
-            get { return _currentTime; }
-            set { _currentTime = value; }
+            get { return _answer; }
+            set { InternalSetPropertyValue(ref _answer, value); }
         }
 
         public QuizViewModel(IViewModelFactory viewModelFactory) : base(viewModelFactory)
@@ -69,24 +66,16 @@ namespace QuizDickTionary.Application.ViewModels
 
         private void SubmitAnswer()
         {
-            _submitedAnswers.Add(ObservableWordsViewModel[_crurrentQuiazQuestion]);
+            _submitedAnswers.Add(new WordWithAnswer(ObservableWordsViewModel[_crurrentQuiazQuestion].WordDTopMap(), Answer));
             SafeIncementation();
             if (IsFinishPressed())
             {
-                // new view with summary 
-                ElaborateResults();
+                // new view with summary push -> _submitedAnswers
+
                 return;
             }
 
             Question = ObservableWordsViewModel[_crurrentQuiazQuestion];
-        }
-
-        private void ElaborateResults()
-        {
-            foreach (var question in _submitedAnswers)
-            {
-
-            }
         }
 
         private void SafeIncementation()
