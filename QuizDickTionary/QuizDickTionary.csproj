@@ -67,7 +67,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\back.png" />
+	  <None Remove="Resources\Images\bbutton.png" />
 	  <None Remove="Resources\Images\bck.png" />
 	  <None Remove="Resources\Images\draw.png" />
 	  <None Remove="Resources\Images\history.png" />

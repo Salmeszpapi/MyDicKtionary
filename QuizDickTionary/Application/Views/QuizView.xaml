@@ -10,7 +10,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -18,13 +18,13 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackLayout Grid.Column="1" Background="White" HeightRequest="300">
+            <StackLayout Grid.Column="1" Background="Transparent" HeightRequest="300">
                 <Border 
-                Stroke="DarkBlue" 
-                StrokeThickness="4" 
+                Stroke="#013A80" 
+                StrokeThickness="6" 
                 StrokeShape="RoundRectangle 12" 
                 BackgroundColor="White"
-                Padding="5">
+                Padding="20">
                 
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
@@ -33,29 +33,52 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
+                    <Frame 
+                          Grid.Column="1"
+                          WidthRequest="400" 
+                          HeightRequest="80" 
+                          CornerRadius="10" 
+                          BackgroundColor="#013A80" 
+                          HorizontalOptions="Start" 
+                          VerticalOptions="Center"
+                          BorderColor="Transparent"
+                          HasShadow="False"
+                          Margin="-50,0,0,0">
+                        <Label 
+                            Grid.Column="1" 
+                            FontFamily="Bitter bold"
+                            FontSize="40" 
+                            FontAttributes="Bold" 
+                            TextColor="White"
+                            Text="What is what" 
+                            LineBreakMode="TailTruncation"
+                            HorizontalOptions="Center"/>
+                    </Frame>
+                    <Frame 
+                        Grid.Column="0"
+                        WidthRequest="80" 
+                        HeightRequest="80" 
+                        CornerRadius="50" 
+                        BackgroundColor="#64A6BD" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"
+                        BorderColor="Transparent"
+                        HasShadow="False">
+                        
+                        <Label 
+                            Text="{Binding QuestionIndex}" 
+                            HorizontalTextAlignment="Center" 
+                            VerticalTextAlignment="Center" 
+                            FontFamily="Bitter bold"
+                            FontSize="50" 
+                            FontAttributes="Bold" 
+                            TextColor="White" />
+                    </Frame>
+              
 
-                    <Frame
-                            Grid.Column="0"
-                            WidthRequest="40" 
-                            HeightRequest="40"
-                            CornerRadius="25"
-                            BackgroundColor="LightBlue"
-                            HorizontalOptions="Center"
-                            VerticalOptions="Center"/>
-                    <Label 
-                        Text="1." 
-                        FontAttributes="Bold" 
-                        FontSize="18"
-                        HorizontalOptions="Center" 
-                        VerticalOptions="Center" 
-                        TextColor="White" />
-                                
-
-                    <Label Grid.Column="1" Text="What is what" HorizontalOptions="Center"/>
-                    <Label Grid.Column="2" Text="Time" HorizontalOptions="End" />
 
                         <!-- Dynamic Content Binding -->
 
