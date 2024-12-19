@@ -37,6 +37,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Frame 
+                          Grid.Row="0"
                           Grid.Column="1"
                           WidthRequest="400" 
                           HeightRequest="80" 
@@ -48,6 +49,7 @@
                           HasShadow="False"
                           Margin="-50,0,0,0">
                         <Label 
+                            Grid.Row="0"
                             Grid.Column="1" 
                             FontFamily="Bitter bold"
                             FontSize="40" 
@@ -82,13 +84,24 @@
 
                         <!-- Dynamic Content Binding -->
 
-                    <ContentView Grid.Row="1" Grid.ColumnSpan="3">
+                    <!--<ContentView Grid.Row="1" Grid.ColumnSpan="0">
                         <ContentView.Content>
                             <view:StartQuizWord BindingContext="{Binding Question}" />
                         </ContentView.Content>
-                    </ContentView>
+                    </ContentView>-->
                     
-                    <Button Command="{Binding SubmitCommand}" Text="{Binding SubmitButtonText}"/>
+                    <Button
+                        Command="{Binding SubmitCommand}" 
+                        Text="{Binding SubmitButtonText}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="2"
+                        FontFamily="Bitter bold"
+                        FontSize="20" 
+                        FontAttributes="Bold" 
+                        TextColor="White"
+                        Background="#013A80"/>
                 </Grid>
             </Border>
         </StackLayout>
