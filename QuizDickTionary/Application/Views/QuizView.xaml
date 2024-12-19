@@ -89,8 +89,6 @@
 
                             </Entry>
 
-                        </ContentView.Content>
-                    </ContentView>-->
                     
                     <Button
                         Command="{Binding SubmitCommand}" 
