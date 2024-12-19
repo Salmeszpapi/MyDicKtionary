@@ -6,16 +6,63 @@
              x:DataType="vm:ShowResultQuizViewModel"
              x:Class="QuizDickTionary.Application.Views.ShowResultQuizView">
 
-    <CollectionView ItemsSource="{Binding WordWithAnswers}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:WordWithAnswer">
-                <StackLayout>
-                    <Label Text="{Binding EnglishWord}" />
-                    <Label Text="{Binding HungarianhWord}" />
-                    <Label Text="{Binding Answer}" />
-                    <Label Text="{Binding IsCorrect}" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Column="1" Background="Transparent" HeightRequest="300">
+            <Border 
+                Stroke="#013A80" 
+                StrokeThickness="6" 
+                StrokeShape="RoundRectangle 12" 
+                BackgroundColor="White"
+                Padding="20">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <CollectionView ItemsSource="{Binding WordWithAnswers}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:WordWithAnswer">
+                                <StackLayout Orientation="Horizontal">
+                                    <Grid>
+
+                                        <Label Text="{Binding EnglishWord}"
+                                               Grid.Column="0"/>
+                                        <Label Text="{Binding HungarianhWord}"
+                                               Grid.Column="2" />
+                                        <Label Text="{Binding Answer}"
+                                               Grid.Column="4" />
+                                        <Label Text="{Binding IsCorrect}"
+                                               Grid.Column="6"/>
+                                    </Grid>
+                                </StackLayout>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Border>
+        </StackLayout>
+    </Grid>
 </ContentView>

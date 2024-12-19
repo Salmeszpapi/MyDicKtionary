@@ -17,8 +17,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
+        
         <StackLayout Grid.Column="1" Background="Transparent" HeightRequest="300">
             <Border 
                 Stroke="#013A80" 
