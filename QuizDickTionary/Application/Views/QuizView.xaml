@@ -7,25 +7,26 @@
              xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
              x:DataType="vm:QuizViewModel">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <StackLayout Grid.Column="1" Background="Transparent" HeightRequest="300">
-                <Border 
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Column="1" Background="Transparent" HeightRequest="300">
+            <Border 
                 Stroke="#013A80" 
                 StrokeThickness="6" 
                 StrokeShape="RoundRectangle 12" 
                 BackgroundColor="White"
                 Padding="20">
-                
+
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -35,6 +36,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Frame 
                           Grid.Row="0"
@@ -69,7 +71,7 @@
                         VerticalOptions="Start"
                         BorderColor="Transparent"
                         HasShadow="False">
-                        
+
                         <Label 
                             Text="{Binding QuestionIndex}" 
                             HorizontalTextAlignment="Center" 
@@ -79,17 +81,14 @@
                             FontAttributes="Bold" 
                             TextColor="White" />
                     </Frame>
-              
 
+                            <Entry
+                                    Text="lol"
+                                    Grid.Row="1"
+                                    Background="White">
 
-                        <!-- Dynamic Content Binding -->
+                            </Entry>
 
-                    <!--<ContentView Grid.Row="1" Grid.ColumnSpan="0">
-                        <ContentView.Content>
-                            <view:StartQuizWord BindingContext="{Binding Question}" />
-                        </ContentView.Content>
-                    </ContentView>-->
-                    
                     <Button
                         Command="{Binding SubmitCommand}" 
                         Text="{Binding SubmitButtonText}"
