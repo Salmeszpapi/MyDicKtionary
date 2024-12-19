@@ -4,10 +4,10 @@
              x:Class="QuizDickTionary.Application.Views.StartQuizWord"
              xmlns:dt="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
              x:DataType="dt:WordViewModel">
-    <VerticalStackLayout>
+    <VerticalStackLayout Background="Transparent">
         <Label Text="{Binding Hungarian}"></Label>
         <Label Text="{Binding Slovak}"></Label>
         <Label Text="{Binding English}"></Label>
-        <Label Text="{Binding English}"></Label>
+        <Label Text="{Binding Difficulty}"></Label>
     </VerticalStackLayout>
 </ContentView>

@@ -17,30 +17,31 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackLayout Grid.Column="1" Background="White" HeightRequest="300">
-            <Grid Margin="5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Text="1." />
-                    <Label Grid.Column="1" Text="What is what" HorizontalOptions="Center"/>
-                    <Label Grid.Column="2" Text="Time" HorizontalOptions="End" />
+        <Grid Grid.Column="1" Background="Wheat" Padding="10"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                    <!-- Dynamic Content Binding -->
+            <Label Grid.Column="0" Text="{Binding CurrentQuizQuestion}" />
+            <Label Grid.Column="1" Text="What is what" HorizontalOptions="Center"/>
+            <Label Grid.Column="2" Text="{Binding CurrentTime}" HorizontalOptions="End" />
 
-                <ContentView Grid.Row="1" Grid.ColumnSpan="3">
-                    <ContentView.Content>
-                        <view:StartQuizWord BindingContext="{Binding Question}" />
-                    </ContentView.Content>
-                </ContentView>
-            </Grid>
-        </StackLayout>
+            <ContentView Grid.Row="1" Grid.ColumnSpan="3">
+                <ContentView.Content>
+                    <view:StartQuizWord BindingContext="{Binding Question}" />
+                </ContentView.Content>
+            </ContentView>
+            <StackLayout VerticalOptions="End" Grid.Row="2" Grid.ColumnSpan="3" HorizontalOptions="Center" >
+                <Button Text="{Binding SubmitButtonText}" Command="{Binding SubmitCommand}"/>
+            </StackLayout>
+        </Grid>
     </Grid>
 </ContentView>
