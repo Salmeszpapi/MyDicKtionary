@@ -6,7 +6,7 @@
              Title="MainWindowLayout"
              x:DataType="viewmodel:MainWindowViewModel">
     <Grid>
-        <Image Source="wood.jpg" Aspect="AspectFill"/>
+        <Image Source="bck.png" Aspect="AspectFill"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -21,10 +21,16 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                <ImageButton x:Name="BackButton" IsVisible="{Binding IsBackButtonEnabled}" Command="{Binding BackToPreviousViewCommand}" Grid.Column="0" Source="back.png" HeightRequest="50" HorizontalOptions="Start" >
+                <ImageButton x:Name="BackButton" IsVisible="{Binding IsBackButtonEnabled}" Command="{Binding BackToPreviousViewCommand}" Grid.Column="0" Source="bbutton.png" Background="Transparent" HeightRequest="50" HorizontalOptions="Start" >
                     </ImageButton>
                     <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center" >
-                        <Label VerticalOptions="Center" Text="Dictionary" FontSize="25" FontAutoScalingEnabled="True" />
+                    <Label VerticalOptions="Center" 
+                           Text="Dictionary" 
+                           FontSize="25" 
+                           FontAutoScalingEnabled="True" 
+                           FontFamily="Bitter bold" 
+                           FontAttributes="Bold" 
+                           TextColor="DarkBlue" />
                     </HorizontalStackLayout>
                 </Grid>
             <ContentView Grid.Row="1" Content="{Binding ContentView}" />

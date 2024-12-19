@@ -38,26 +38,34 @@
 
     <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"  >
         <HorizontalStackLayout>
-            <ImageButton Command="{Binding StartQuizCommand}" Background="Wheat" Margin="5" 
+            <ImageButton Command="{Binding StartQuizCommand}" Background="#7C64A6BD" Margin="10" 
              Source="quiz.png"
-             HeightRequest="100" WidthRequest="100"
+             HeightRequest="150" WidthRequest="150"
+             Padding="20"
+             CornerRadius="10" 
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
-            <ImageButton  Command="{Binding EditCommand}" Background="Wheat" Margin="5" 
+            <ImageButton  Command="{Binding EditCommand}" Background="#7CB3EFB2" Margin="10" 
              Source="draw.png"
-             HeightRequest="100" WidthRequest="100"
+             HeightRequest="150" WidthRequest="150"
+             Padding="20"
+             CornerRadius="10"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
         </HorizontalStackLayout>
         <HorizontalStackLayout>
-            <ImageButton Command="{Binding HystoryCommand}" Background="Wheat" Margin="5" 
+            <ImageButton Command="{Binding HystoryCommand}" Background="#7CB3EFB2" Margin="10" 
              Source="history.png"
-             HeightRequest="100" WidthRequest="100"
+             HeightRequest="150" WidthRequest="150"
+             Padding="20"
+             CornerRadius="10"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
-            <ImageButton Command="{Binding SettingsCommand}" Background="Wheat" Margin="5" 
+            <ImageButton Command="{Binding SettingsCommand}" Background="#7C64A6BD" Margin="10" 
              Source="settings.png"
-             HeightRequest="100" WidthRequest="100"
+             HeightRequest="150" WidthRequest="150"
+             Padding="20"
+             CornerRadius="10"
              VerticalOptions="Center" 
              HorizontalOptions="Center" />
         </HorizontalStackLayout>

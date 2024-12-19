@@ -6,22 +6,11 @@
              xmlns:vm="clr-namespace:QuizDickTionary.Application.ViewModels"
              xmlns:components="clr-namespace:QuizDickTionary.Application.ViewModels.Components"
              x:DataType="vm:QuizViewModel">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <Grid Grid.Column="1" Background="Wheat" Padding="10"  >
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -29,19 +18,77 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <StackLayout Grid.Column="1" Background="Transparent" HeightRequest="300">
+                <Border 
+                Stroke="#013A80" 
+                StrokeThickness="6" 
+                StrokeShape="RoundRectangle 12" 
+                BackgroundColor="White"
+                Padding="20">
+                
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Frame 
+                          Grid.Column="1"
+                          WidthRequest="400" 
+                          HeightRequest="80" 
+                          CornerRadius="10" 
+                          BackgroundColor="#013A80" 
+                          HorizontalOptions="Start" 
+                          VerticalOptions="Center"
+                          BorderColor="Transparent"
+                          HasShadow="False"
+                          Margin="-50,0,0,0">
+                        <Label 
+                            Grid.Column="1" 
+                            FontFamily="Bitter bold"
+                            FontSize="40" 
+                            FontAttributes="Bold" 
+                            TextColor="White"
+                            Text="What is what" 
+                            LineBreakMode="TailTruncation"
+                            HorizontalOptions="Center"/>
+                    </Frame>
+                    <Frame 
+                        Grid.Column="0"
+                        WidthRequest="80" 
+                        HeightRequest="80" 
+                        CornerRadius="50" 
+                        BackgroundColor="#64A6BD" 
+                        HorizontalOptions="Start" 
+                        VerticalOptions="Start"
+                        BorderColor="Transparent"
+                        HasShadow="False">
+                        
+                        <Label 
+                            Text="{Binding QuestionIndex}" 
+                            HorizontalTextAlignment="Center" 
+                            VerticalTextAlignment="Center" 
+                            FontFamily="Bitter bold"
+                            FontSize="50" 
+                            FontAttributes="Bold" 
+                            TextColor="White" />
+                    </Frame>
+              
 
-            <Label Grid.Column="0" Text="{Binding CurrentQuizQuestion}" />
-            <Label Grid.Column="1" Text="What is what" HorizontalOptions="Center"/>
-            <Label Grid.Column="2" Text="{Binding CurrentTime}" HorizontalOptions="End" />
 
-            <ContentView Grid.Row="1" Grid.ColumnSpan="3">
-                <ContentView.Content>
-                    <view:StartQuizWord BindingContext="{Binding Question}" />
-                </ContentView.Content>
-            </ContentView>
-            <StackLayout VerticalOptions="End" Grid.Row="2" Grid.ColumnSpan="3" HorizontalOptions="Center" >
-                <Button Text="{Binding SubmitButtonText}" Command="{Binding SubmitCommand}"/>
-            </StackLayout>
-        </Grid>
+                        <!-- Dynamic Content Binding -->
+
+                    <ContentView Grid.Row="1" Grid.ColumnSpan="3">
+                        <ContentView.Content>
+                            <view:StartQuizWord BindingContext="{Binding Question}" />
+                        </ContentView.Content>
+                    </ContentView>
+                </Grid>
+            </Border>
+        </StackLayout>
     </Grid>
 </ContentView>
