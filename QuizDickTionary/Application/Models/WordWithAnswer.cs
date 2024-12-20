@@ -20,9 +20,10 @@ namespace QuizDickTionary.Application.Models
             EnglishWord = wordDto.English;
             HungarianhWord = wordDto.Hungarian;
             Answer = answer;
-            if (wordDto.English == answer)
+            if (wordDto.English.TrimEnd() == answer)
             {
                 IsCorrect = true;
+                return;
             }
 
             IsCorrect = false;

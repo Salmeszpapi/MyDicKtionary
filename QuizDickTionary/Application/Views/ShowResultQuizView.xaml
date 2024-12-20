@@ -5,17 +5,36 @@
              xmlns:models="clr-namespace:QuizDickTionary.Application.Models"
              x:DataType="vm:ShowResultQuizViewModel"
              x:Class="QuizDickTionary.Application.Views.ShowResultQuizView">
+    <Grid ColumnDefinitions="*,Auto,*">
+        <ScrollView Grid.Column="1" Background="Silver">
+            <Grid Padding="10" ColumnSpacing="5" RowSpacing="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
 
-    <CollectionView ItemsSource="{Binding WordWithAnswers}">
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:WordWithAnswer">
-                <StackLayout>
-                    <Label Text="{Binding EnglishWord}" />
-                    <Label Text="{Binding HungarianhWord}" />
-                    <Label Text="{Binding Answer}" />
-                    <Label Text="{Binding IsCorrect}" />
-                </StackLayout>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <CollectionView Grid.Row="1" ItemsSource="{Binding WordWithAnswers}" MinimumWidthRequest="300">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:WordWithAnswer">
+                            <Grid ColumnDefinitions="4*,4*,4*,2*" Padding="5">
+                                <Label Text="{Binding EnglishWord}" Grid.Column="0" HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding HungarianhWord}" Grid.Column="1" HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding Answer}" Grid.Column="2" HorizontalTextAlignment="Center" />
+                                <Label Text="{Binding IsCorrect}" Grid.Column="3" HorizontalTextAlignment="Center" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+        </ScrollView>
+    </Grid>
 </ContentView>

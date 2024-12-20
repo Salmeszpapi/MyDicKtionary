@@ -83,7 +83,7 @@
                     </Frame>
 
                             <Entry
-                                    Text="lol"
+                                    Text="{Binding Answer}"
                                     Grid.Row="1"
                                     Background="White">
 
