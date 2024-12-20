@@ -17,8 +17,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
+        
         <StackLayout Grid.Column="1" Background="Transparent" HeightRequest="300">
             <Border 
                 Stroke="#013A80" 
@@ -54,12 +54,13 @@
                             Grid.Row="0"
                             Grid.Column="1" 
                             FontFamily="Bitter bold"
-                            FontSize="40" 
+                            FontSize="30" 
                             FontAttributes="Bold" 
                             TextColor="White"
                             Text="{Binding Question.Hungarian}" 
                             LineBreakMode="TailTruncation"
-                            HorizontalOptions="Center"/>
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"/>
                     </Frame>
                     <Frame 
                         Grid.Column="0"
@@ -85,7 +86,8 @@
                             <Entry
                                     Text="{Binding Answer}"
                                     Grid.Row="1"
-                                    Background="White">
+                                    Background="White"
+                                    Margin="10">
 
                             </Entry>
 

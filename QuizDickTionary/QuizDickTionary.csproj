@@ -69,8 +69,10 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\bbutton.png" />
 	  <None Remove="Resources\Images\bck.png" />
+	  <None Remove="Resources\Images\correct.png" />
 	  <None Remove="Resources\Images\draw.png" />
 	  <None Remove="Resources\Images\history.png" />
+	  <None Remove="Resources\Images\incorrect.png" />
 	  <None Remove="Resources\Images\quiz.png" />
 	  <None Remove="Resources\Images\settings.png" />
 	  <None Remove="Resources\Images\wood.jpg" />
